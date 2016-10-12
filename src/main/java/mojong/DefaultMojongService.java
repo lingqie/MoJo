@@ -29,7 +29,7 @@ public class DefaultMojongService implements MojoService {
 
 	@Override
 	public void toSortPlayerPaizu(List<MoJoPai> player) {
-		// int count = 1;
+		 int count = 1;
 		for (int j = 0; j < player.size(); j++) {
 			for (int i = 0; i < player.size() - 1 - j; i++) {
 				if (isGreatter(player.get(i), player.get(i + 1))) {
