@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MojoManualTest {
+public class MoJoManualTest {
 
 	public static List<MoJoPai> paizu;
 	public static List<MoJoPai> paizu2;

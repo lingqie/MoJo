@@ -1,6 +1,9 @@
 package mojong;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 
 public class MoJoPai {
 	public String code;
@@ -56,5 +59,23 @@ public class MoJoPai {
 			return "R"+StringUtils.substring(code, 0, 2);
 		}
 		return StringUtils.substring(code, 0, 2);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof MoJoPai) {
+			MoJoPai another = (MoJoPai) obj;
+			EqualsBuilder builder = new EqualsBuilder();
+			builder.append(code, another.code);
+			builder.append(isDora, another.isDora);
+			builder.append(isRed, another.isRed);
+			return builder.isEquals();
+		}
+		return false;
+	}
+	
+	public int hashCode() {
+		return new HashCodeBuilder().append(code).append(isDora)
+				.append(isRed).toHashCode();
 	}
 }
