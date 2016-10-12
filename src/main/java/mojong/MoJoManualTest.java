@@ -8,59 +8,39 @@ public class MoJoManualTest {
 
 	public static List<MoJoPai> paizu;
 	public static List<MoJoPai> paizu2;
-	public static List<MoJoPai> player;
+	public static List<MoJoPai> player1;
 	public static List<MoJoPai> player2;
 	public static List<MoJoPai> player3;
 	public static List<MoJoPai> player4;
+	public static List<MoJoPai> player1PaiHe;
+	public static List<MoJoPai> player2PaiHe;
+	public static List<MoJoPai> player3PaiHe;
+	public static List<MoJoPai> player4PaiHe;
 	public static List<MoJoPai> lingShangPai;
+	public static List<MoJoPai> paiShan;
+
 	public static int zongPaiShu = 108 + 28;
+	// player pai 13*4
+	// paishan 70
+	// lingshang 14
 
 	public static void main(String[] args) {
-		// for(int i=0;i<10;i++){
-		// System.out.println(new Random().nextInt(2));
-		// }
+
 		initDeafaultPaiZu();
-		// System.out.println("paizu:");
-		// for (MoJoPai pai : paizu) {
-		// System.out.println(pai.toString());
-		// }
-
-		// show random quanbu paizu
-		// System.out.println("paizu2:");
-		// int sum = 0;
-		// for (int i=0;i<zongPaiShu;i++) {
-		// sum++;
-		// System.out.print(paizu2.get(i).toString() + " ");
-		// if (sum % (zongPaiShu/4) == 0) {
-		// System.out.print("\n");
-		// }
-		// }
-
-		// fapai
-		for (int i = 0; i < 14; i++) {
-			player.add(paizu2.get(i));
-			player2.add(paizu2.get(i + 14));
-			player3.add(paizu2.get(i + 28));
-			player4.add(paizu2.get(i + 14 * 3));
-		}
-		// get lingshang
-		for (int i = zongPaiShu - 1; i > zongPaiShu - 1 - 14; i--) {
-			lingShangPai.add(paizu2.get(i));
-		}
-		// show lingshang
-		System.out.println(lingShangPai.size());
-		for (MoJoPai pai : lingShangPai) {
-			System.out.print(pai.toString() + " ");
-		}
-
-		showPlayerString(player, "player1", false);
-		showPlayerString(player, "player1", true);
-
-		// showAdminVersionString();
+		showAllPai();
+		initPlayerPai();
+		showAdminVersionString();
 		// showPlayerVersionString();
+		initPaiShan();
+		showPaiShan();
+		initLingShangPai();
+		showLingShangPai();
+
+		showPlayerString(player1, "player1", false);
+		showPlayerString(player1, "player1", true);
 
 		DefaultMojongService mojongService = new DefaultMojongService();
-		mojongService.toSortPlayerPaizu(player);
+		mojongService.toSortPlayerPaizu(player1);
 		mojongService.toSortPlayerPaizu(player2);
 		mojongService.toSortPlayerPaizu(player3);
 		mojongService.toSortPlayerPaizu(player4);
@@ -70,8 +50,63 @@ public class MoJoManualTest {
 
 	}
 
+	private static void showLingShangPai() {
+		// show lingshang
+		System.out.println("");
+		System.out.println("lingshangpai size:" + lingShangPai.size());
+		System.out.println("lingshangpai:");
+		for (MoJoPai pai : lingShangPai) {
+			System.out.print(pai.toString() + " ");
+		}
+	}
+
+	private static void showPaiShan() {
+		System.out.println("");
+		System.out.println("paishan size:" + paiShan.size());
+		System.out.println("paishan:");
+		for (MoJoPai pai : paiShan) {
+			System.out.print(pai.toString() + " ");
+		}
+	}
+
+	private static void initLingShangPai() {
+		// get lingshang
+		for (int i = zongPaiShu - 14; i < zongPaiShu; i++) {
+			lingShangPai.add(paizu2.get(i));
+		}
+	}
+
+	private static void showAllPai() {
+		// show random quanbu paizu
+		System.out.println("paizu2:");
+		int sum = 0;
+		for (int i = 0; i < zongPaiShu; i++) {
+			sum++;
+			System.out.print(paizu2.get(i).toString() + " ");
+			if (sum % (zongPaiShu / 4) == 0) {
+				System.out.print("\n");
+			}
+		}
+	}
+
+	private static void initPlayerPai() {
+		// fapai
+		for (int i = 0; i < 13; i++) {
+			player1.add(paizu2.get(i));
+			player2.add(paizu2.get(i + 13 * 1));
+			player3.add(paizu2.get(i + 13 * 2));
+			player4.add(paizu2.get(i + 13 * 3));
+		}
+	}
+
+	private static void initPaiShan() {
+		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
+			paiShan.add(paizu2.get(i));
+		}
+	}
+
 	private static void showPlayerVersionString() {
-		showPlayerString(player, "player1", false);
+		showPlayerString(player1, "player1", false);
 		showPlayerString(player2, "player2", false);
 		showPlayerString(player3, "player3", false);
 		showPlayerString(player4, "player4", false);
@@ -92,7 +127,7 @@ public class MoJoManualTest {
 	}
 
 	private static void showAdminVersionString() {
-		showPlayerString(player, "player1", true);
+		showPlayerString(player1, "player1", true);
 		showPlayerString(player2, "player2", true);
 		showPlayerString(player3, "player3", true);
 		showPlayerString(player4, "player4", true);
@@ -101,11 +136,12 @@ public class MoJoManualTest {
 	private static void initDeafaultPaiZu() {
 		paizu = new ArrayList<MoJoPai>();
 		paizu2 = new ArrayList<MoJoPai>();
-		player = new ArrayList<MoJoPai>();
+		player1 = new ArrayList<MoJoPai>();
 		player2 = new ArrayList<MoJoPai>();
 		player3 = new ArrayList<MoJoPai>();
 		player4 = new ArrayList<MoJoPai>();
 		lingShangPai = new ArrayList<MoJoPai>();
+		paiShan = new ArrayList<MoJoPai>();
 
 		addMMoJoPai();
 		addSMoJoPai();
