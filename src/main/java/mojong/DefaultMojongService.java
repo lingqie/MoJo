@@ -67,4 +67,17 @@ public class DefaultMojongService implements MojoService {
 		}
 	}
 
+	@Override
+	public Boolean isQiDuiZiWaiting(List<MoJoPai> player) {
+		int qiduiziCount = 0;
+		for (int i = 0; i < player.size() - 1; i++) {
+			if (player.get(i).equals(player.get(i + 1))) {
+				qiduiziCount++;
+			}
+		}
+		if (qiduiziCount == 6) {
+			return true;
+		}
+		return false;
+	}
 }

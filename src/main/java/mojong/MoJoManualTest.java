@@ -170,17 +170,17 @@ public class MoJoManualTest {
 	}
 
 	private static void addMoJoPai(String s) {
-		paizu.add(new MoJoPai(s + "1", false, false));
-		paizu.add(new MoJoPai(s + "2", false, false));
-		paizu.add(new MoJoPai(s + "3", false, false));
-		paizu.add(new MoJoPai(s + "4", false, false));
+		paizu.add(new MoJoPai(s , 1, false, false));
+		paizu.add(new MoJoPai(s , 2, false, false));
+		paizu.add(new MoJoPai(s , 3, false, false));
+		paizu.add(new MoJoPai(s , 4, false, false));
 	}
 
 	private static void addRedMoJoPai(String s) {
-		paizu.add(new MoJoPai(s + "1", true, true));
-		paizu.add(new MoJoPai(s + "2", false, false));
-		paizu.add(new MoJoPai(s + "3", false, false));
-		paizu.add(new MoJoPai(s + "4", false, false));
+		paizu.add(new MoJoPai(s , 1, true, true));
+		paizu.add(new MoJoPai(s , 2, false, false));
+		paizu.add(new MoJoPai(s , 3, false, false));
+		paizu.add(new MoJoPai(s , 4, false, false));
 	}
 
 }

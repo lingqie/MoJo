@@ -3,12 +3,12 @@ import mojong.MoJoPai;
 
 public class TestIsGreatterFunc {
 	public static void main(String[] args) {
-		System.out.println(isGreatter(new MoJoPai("1s", false, false), new MoJoPai("1z", false, false)));
-		System.out.println(isGreatter(new MoJoPai("1s", false, false), new MoJoPai("9z", false, false)));
-		System.out.println(isGreatter(new MoJoPai("9s", false, false), new MoJoPai("1z", false, false)));
-		System.out.println(isGreatter(new MoJoPai("1z", false, false), new MoJoPai("1s", false, false)));
-		System.out.println(isGreatter(new MoJoPai("1z", false, false), new MoJoPai("9s", false, false)));
-		System.out.println(isGreatter(new MoJoPai("9z", false, false), new MoJoPai("9z", false, false)));
+		System.out.println(isGreatter(new MoJoPai("1s",1, false, false), new MoJoPai("1z",1, false, false)));
+		System.out.println(isGreatter(new MoJoPai("1s",1, false, false), new MoJoPai("9z",1, false, false)));
+		System.out.println(isGreatter(new MoJoPai("9s",1, false, false), new MoJoPai("1z",1, false, false)));
+		System.out.println(isGreatter(new MoJoPai("1z",1, false, false), new MoJoPai("1s",1, false, false)));
+		System.out.println(isGreatter(new MoJoPai("1z",1, false, false), new MoJoPai("9s",1, false, false)));
+		System.out.println(isGreatter(new MoJoPai("9z",1, false, false), new MoJoPai("9z",1, false, false)));
 	}
 	
 	private static Boolean isGreatter(MoJoPai p1, MoJoPai p2) {

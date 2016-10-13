@@ -6,11 +6,13 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class MoJoPai {
 	public String code;
+	public int num;
 	public Boolean isDora;
 	public Boolean isRed;
 
-	public MoJoPai(String code, Boolean isDora, Boolean isRed) {
+	public MoJoPai(String code,int num,Boolean isDora, Boolean isRed) {
 		this.code = code;
+		this.num=num;
 		this.isDora = isDora;
 		this.isRed = isRed;
 	}
@@ -73,15 +75,13 @@ public class MoJoPai {
 			MoJoPai another = (MoJoPai) obj;
 			EqualsBuilder builder = new EqualsBuilder();
 			builder.append(code, another.code);
-			builder.append(isDora, another.isDora);
-			builder.append(isRed, another.isRed);
 			return builder.isEquals();
 		}
 		return false;
 	}
 
 	public int hashCode() {
-		return new HashCodeBuilder().append(code).append(isDora).append(isRed).toHashCode();
+		return new HashCodeBuilder().append(code).append(num).append(isDora).append(isRed).toHashCode();
 	}
 
 }
