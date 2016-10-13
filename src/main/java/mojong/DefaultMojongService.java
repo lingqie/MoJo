@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class DefaultMojongService implements MojoService {
 
+	public static int zongPaiShu = 108 + 28;
+	// player pai 13*4
+	// paishan 70
+	// lingshang 14
+
 	@Override
 	public Boolean isGreatter(MoJoPai p1, MoJoPai p2) {
 		char[] p1String = p1.toString().toCharArray();
@@ -29,7 +34,7 @@ public class DefaultMojongService implements MojoService {
 
 	@Override
 	public void toSortPlayerPaizu(List<MoJoPai> player) {
-		 int count = 1;
+		int count = 1;
 		for (int j = 0; j < player.size(); j++) {
 			for (int i = 0; i < player.size() - 1 - j; i++) {
 				if (isGreatter(player.get(i), player.get(i + 1))) {
@@ -43,7 +48,23 @@ public class DefaultMojongService implements MojoService {
 				// System.out.println("");
 			}
 		}
-		
+
 	}
-	
+
+	@Override
+	public void showPai(List<MoJoPai> all, String name, int line, Boolean isAdmin) {
+		if (line <= 0) {
+			System.out.println("can't put out " + line + "line");
+		}
+		System.out.println(name + ":");
+		int sum = 0;
+		for (int i = 0; i < all.size(); i++) {
+			sum++;
+			System.out.print(all.get(i).getShowTest(isAdmin) + " ");
+			if (sum % (all.size() / line) == 0) {
+				System.out.print("\n");
+			}
+		}
+	}
+
 }

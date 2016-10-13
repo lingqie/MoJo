@@ -59,6 +59,13 @@ public class MoJoPai {
 		}
 		return StringUtils.substring(code, 0, 2);
 	}
+	
+	public String getShowTest(Boolean isAdmin){
+		if(isAdmin){
+			return toString();
+		}
+		return toPlayerString();
+	}
 
 	@Override
 	public boolean equals(Object obj) {
