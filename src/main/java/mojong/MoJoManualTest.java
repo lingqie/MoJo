@@ -29,23 +29,28 @@ public class MoJoManualTest {
 		initDeafaultPaiZu();
 		showAllPai();
 		initPlayerPai();
-		showAdminVersionString();
-		// showPlayerVersionString();
+		// showAdminVersionString();
+		showPlayerVersionString();
 		initPaiShan();
-		showPaiShan();
+		// showPaiShan();
 		initLingShangPai();
-		showLingShangPai();
+		// showLingShangPai();
 
-		showPlayerString(player1, "player1", false);
-		showPlayerString(player1, "player1", true);
+		// showPlayerString(player1, "player1", false);
+		// showPlayerString(player1, "player1", true);
 
+		long starttime = System.nanoTime();
 		DefaultMojongService mojongService = new DefaultMojongService();
 		mojongService.toSortPlayerPaizu(player1);
 		mojongService.toSortPlayerPaizu(player2);
 		mojongService.toSortPlayerPaizu(player3);
 		mojongService.toSortPlayerPaizu(player4);
 
-		showAdminVersionString();
+		System.out.println("");
+		System.out.println("p1+p2sort time:");
+		System.out.println((System.nanoTime() - starttime) / 1000);
+
+		// showAdminVersionString();
 		showPlayerVersionString();
 
 	}

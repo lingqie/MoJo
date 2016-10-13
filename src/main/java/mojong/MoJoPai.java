@@ -4,7 +4,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-
 public class MoJoPai {
 	public String code;
 	public Boolean isDora;
@@ -55,12 +54,12 @@ public class MoJoPai {
 	}
 
 	public String toPlayerString() {
-		if(code.toCharArray()[0]=='5'&&code.toCharArray()[2]=='1'&&code.toCharArray()[1]!='z'){
-			return "R"+StringUtils.substring(code, 0, 2);
+		if (code.toCharArray()[0] == '5' && code.toCharArray()[2] == '1' && code.toCharArray()[1] != 'z') {
+			return "R" + StringUtils.substring(code, 0, 2);
 		}
 		return StringUtils.substring(code, 0, 2);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof MoJoPai) {
@@ -73,9 +72,9 @@ public class MoJoPai {
 		}
 		return false;
 	}
-	
+
 	public int hashCode() {
-		return new HashCodeBuilder().append(code).append(isDora)
-				.append(isRed).toHashCode();
+		return new HashCodeBuilder().append(code).append(isDora).append(isRed).toHashCode();
 	}
+
 }
