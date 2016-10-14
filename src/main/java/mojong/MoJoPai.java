@@ -9,7 +9,15 @@ public class MoJoPai {
 	public int num;
 	public Boolean isDora;
 	public Boolean isRed;
-
+	
+	public MoJoPai(int code,String type,int num) {
+		this.code = code;
+		this.type = type;
+		this.num=num;
+		this.isDora=false;
+		this.isRed=false;
+	}
+	
 	public MoJoPai(int code,String type,int num,Boolean isDora, Boolean isRed) {
 		this.code = code;
 		this.type = type;

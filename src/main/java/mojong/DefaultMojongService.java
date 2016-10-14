@@ -3,6 +3,8 @@ package mojong;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -97,6 +99,7 @@ public class DefaultMojongService implements MojoService {
 	}
 
 	@Override
+	//TEST DONE
 	public Boolean isGreatter(MoJoPai p1, MoJoPai p2) {
 		
 
@@ -151,6 +154,7 @@ public class DefaultMojongService implements MojoService {
 	}
 
 	@Override
+	
 	public Boolean isQiDuiZiWaiting(List<MoJoPai> player) {
 		int qiduiziCount = 0;
 		for (int i = 0; i < player.size() - 1; i++) {
@@ -158,19 +162,61 @@ public class DefaultMojongService implements MojoService {
 				qiduiziCount++;
 			}
 		}
-		if (qiduiziCount == 6) {
+		if (qiduiziCount >= 6) {
 			return true;
 		}
 		return false;
 	}
 	
+	
 	@Override
+	//TEST DONE
 	public Boolean isYaoJiu(MoJoPai pai) {
 		if(pai.code==1||pai.code==9||pai.type.equals("z")){
 			return true;
 		}
 		return false;
 	}
-
 	
+	@Override
+	public Boolean isCanRon(List<MoJoPai> player) {
+		
+		return null;
+	}
+	
+	//TEST DONE
+	public List<MoJoPai> createMoJoPais(String text){
+		
+		List<MoJoPai> list = new ArrayList<MoJoPai>();
+	      String pattern = "(\\d*m+)?(\\d*p+)?(\\d*s+)?(\\d*z+)?";
+	      
+	      Pattern r = Pattern.compile(pattern);
+	      Matcher m = r.matcher(text);
+	      if(m.find()){//must judge
+		      String mpart =m.group(1);
+		      String ppart =m.group(2);
+		      String spart =m.group(3);
+		      String zpart =m.group(4);
+		      mpart=StringUtils.replace(mpart,"m","");
+		      ppart=StringUtils.replace(ppart,"p","");
+		      spart=StringUtils.replace(spart,"s","");
+		      zpart=StringUtils.replace(zpart,"z","");
+
+		      create(list, mpart,"m");
+		      create(list, ppart,"p");
+		      create(list, spart,"s");
+		      create(list, zpart,"z");
+		      return list;
+	      }
+	      return null;
+	}
+
+
+	private void create(List<MoJoPai> list, String part,String type) {
+		if(part!=null){
+		for(int i=0;i<part.length();i++){
+	    	  list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type, 1));
+	      }
+		}
+	}
 }
