@@ -24,9 +24,8 @@ public class DefaultMojongService implements MojoService {
 		addMoJoPai("p");
 		addMoJoPai("s");
 		addZMoJoPai();
-		return paizu;
-//		List<MoJoPai> paizu2 = randomPaizu();
-//		return paizu2;
+		List<MoJoPai> paizu2 = randomPaizu();
+		return paizu2;
 	}
 
 	private List<MoJoPai> randomPaizu() {
