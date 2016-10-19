@@ -85,17 +85,18 @@ public class DefaultMojongService implements MojoService {
 	}
 
 	private static void addMoJoPai(int s,String type) {
-		paizu.add(new MoJoPai(s ,type, 1, false, false));
-		paizu.add(new MoJoPai(s ,type, 2, false, false));
-		paizu.add(new MoJoPai(s ,type, 3, false, false));
-		paizu.add(new MoJoPai(s ,type, 4, false, false));
+		
+		paizu.add(new MoJoPai(s ,type, false, false));
+		paizu.add(new MoJoPai(s ,type, false, false));
+		paizu.add(new MoJoPai(s ,type, false, false));
+		paizu.add(new MoJoPai(s ,type, false, false));
 	}
 
 	private static void addRedMoJoPai(int s,String type) {
-		paizu.add(new MoJoPai(s ,type, 1, true, true));
-		paizu.add(new MoJoPai(s ,type, 2, false, false));
-		paizu.add(new MoJoPai(s ,type, 3, false, false));
-		paizu.add(new MoJoPai(s ,type, 4, false, false));
+		paizu.add(new MoJoPai(s ,type, true, true));
+		paizu.add(new MoJoPai(s ,type, false, false));
+		paizu.add(new MoJoPai(s ,type, false, false));
+		paizu.add(new MoJoPai(s ,type, false, false));
 	}
 
 	@Override
@@ -106,11 +107,11 @@ public class DefaultMojongService implements MojoService {
 		if (p1.type.compareTo(p2.type)>0) {
 			return true;
 		}
-		if (p1.type == p2.type) {
+		if (p1.type.equals(p2.type)) {
 			if (p1.code > p2.code) {
 				return true;
 			}
-			if (p1.code== p2.code && p1.type.equals( p2.type) && p1.num > p2.num) {
+			if (p1.code== p2.code && p1.type.equals( p2.type) && p2.isRed) {
 				return true;
 			}
 			return false;
@@ -215,7 +216,7 @@ public class DefaultMojongService implements MojoService {
 	private void create(List<MoJoPai> list, String part,String type) {
 		if(part!=null){
 		for(int i=0;i<part.length();i++){
-	    	  list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type, 1));
+	    	  list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type));
 	      }
 		}
 	}

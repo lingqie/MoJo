@@ -3,12 +3,12 @@ import mojong.MoJoPai;
 
 public class TestIsYaoJiuFunc {
 	public static void main(String[] args) {
-		System.out.println(isYaoJiu(new MoJoPai(1,"z", 1)));
-		System.out.println(isYaoJiu(new MoJoPai(7,"z", 1)));
-		System.out.println(isYaoJiu(new MoJoPai(9,"s", 1)));
-		System.out.println(isYaoJiu(new MoJoPai(1,"s", 1)));
-		System.out.println(isYaoJiu(new MoJoPai(5,"s", 1)));
-		System.out.println(isYaoJiu(new MoJoPai(1,"m", 1)));
+		System.out.println(isYaoJiu(new MoJoPai("1z")));
+		System.out.println(isYaoJiu(new MoJoPai("7z")));
+		System.out.println(isYaoJiu(new MoJoPai("9s")));
+		System.out.println(isYaoJiu(new MoJoPai("1s")));
+		System.out.println(isYaoJiu(new MoJoPai("5s")));
+		System.out.println(isYaoJiu(new MoJoPai("1m")));
 		
 	}
 	

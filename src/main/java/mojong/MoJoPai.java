@@ -4,41 +4,46 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class MoJoPai {
-	public int code;//1,2,3,4,5
-	public String type;//m,s,p,z
-	public int num;
+	public int code;// 1,2,3,4,5
+	public String type;// m,s,p,z
 	public Boolean isDora;
 	public Boolean isRed;
-	
-	public MoJoPai(int code,String type,int num) {
-		this.code = code;
-		this.type = type;
-		this.num=num;
-		this.isDora=false;
-		this.isRed=false;
+
+	public MoJoPai(String suoxie) {
+		if (suoxie.charAt(0) == 'R') {
+			this.code = Character.getNumericValue(suoxie.charAt(1));
+			this.type = String.valueOf(suoxie.charAt(2));
+			this.isDora = true;
+			this.isRed = true;
+		} else {
+			this.code = Character.getNumericValue(suoxie.charAt(0));
+			this.type = String.valueOf(suoxie.charAt(1));
+			this.isDora = false;
+			this.isRed = false;
+		}
 	}
-	
-	public MoJoPai(int code,String type,int num,Boolean isDora, Boolean isRed) {
+
+	public MoJoPai(int code, String type) {
 		this.code = code;
 		this.type = type;
-		this.num=num;
+		this.isDora = false;
+		this.isRed = false;
+	}
+
+	public MoJoPai(int code, String type, Boolean isDora, Boolean isRed) {
+		this.code = code;
+		this.type = type;
 		this.isDora = isDora;
 		this.isRed = isRed;
 	}
-
-	
 
 	public int getCode() {
 		return code;
 	}
 
-
-
 	public void setCode(int code) {
 		this.code = code;
 	}
-
-
 
 	public Boolean getIsDora() {
 		return isDora;
@@ -58,26 +63,25 @@ public class MoJoPai {
 
 	@Override
 	public String toString() {
-		// if(isRed){
-		// if(isDora){
-		// return code+"T"+"R";
-		// }
-		// return code+"F"+"R";
-		// }
+
 		if (isDora) {
-			return code+type+num+ "T";
+			if (isRed) {
+				return "R" + code + type + "T";
+			}
+			return code + type + "T";
+
 		}
-		return code + type +num +"F";
+		return code + type + "F";
 	}
 
 	public String toPlayerString() {
-		//the first 5'x' pai is the Red Dora Pai
-		if (code == 5 && num == 1 && type!= "z") {
+
+		if (isRed) {
 			return "R" + code + type;
 		}
-		return  code+type;
+		return code + type;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
@@ -86,16 +90,8 @@ public class MoJoPai {
 		this.type = type;
 	}
 
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
-	public String getShowTest(Boolean isAdmin){
-		if(isAdmin){
+	public String getShowTest(Boolean isAdmin) {
+		if (isAdmin) {
 			return toString();
 		}
 		return toPlayerString();
@@ -114,7 +110,7 @@ public class MoJoPai {
 	}
 
 	public int hashCode() {
-		return new HashCodeBuilder().append(code).append(type).append(num).append(isDora).append(isRed).toHashCode();
+		return new HashCodeBuilder().append(code).append(type).append(isDora).append(isRed).toHashCode();
 	}
 
 }

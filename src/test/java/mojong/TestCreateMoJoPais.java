@@ -1,24 +1,20 @@
 package mojong;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.wicket.util.string.IStringSequence;
-
-import mojong.MoJoPai;
 
 public class TestCreateMoJoPais {
 	public static void main(String[] args) {
 		String s = "111222m33344p666z";
 		String s2 = "11122233344666z";
+		String s3 = "123m456p789s12344z";
 		DefaultMojongService mojongService = new DefaultMojongService();
 		List<MoJoPai> pais = mojongService.createMoJoPais(s);
 		List<MoJoPai> pais2 = mojongService.createMoJoPais(s2);
+		List<MoJoPai> pais3 = mojongService.createMoJoPais(s3);
+		
 		mojongService.showPai(pais, "s", 1, false);
 		mojongService.showPai(pais2, "s2", 1, false);
+		mojongService.showPai(pais3, "s3", 1, false);
 		// show(s);
 
 	}
