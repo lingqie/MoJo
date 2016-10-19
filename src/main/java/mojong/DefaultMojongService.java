@@ -16,14 +16,20 @@ public class DefaultMojongService implements MojoService {
 	// player pai 13*4
 	// paishan 70
 	// lingshang 14
-	
+
 	@Override
 	public List<MoJoPai> initDeafaultPaiZu() {
 		paizu = new ArrayList<MoJoPai>();
-		addMMoJoPai();
-		addSMoJoPai();
-		addPMoJoPai();
+		addMoJoPai("m");
+		addMoJoPai("p");
+		addMoJoPai("s");
 		addZMoJoPai();
+		return paizu;
+//		List<MoJoPai> paizu2 = randomPaizu();
+//		return paizu2;
+	}
+
+	private List<MoJoPai> randomPaizu() {
 		List<MoJoPai> paizu2 = new ArrayList<MoJoPai>();
 		for (int i = 0; i < zongPaiShu; i++) {
 			int num = new Random().nextInt(paizu.size());
@@ -32,86 +38,47 @@ public class DefaultMojongService implements MojoService {
 		}
 		return paizu2;
 	}
-	
 
 	private static void addZMoJoPai() {
-		addMoJoPai(1,"z");
-		addMoJoPai(2,"z");
-		addMoJoPai(3,"z");
-		addMoJoPai(4,"z");
-		addMoJoPai(5,"z");
-		addMoJoPai(6,"z");
-		addMoJoPai(7,"z");
-		
+		for (int i = 1; i < 8; i++) {
+			addMoJoPai(i, "z");
+		}
 	}
 
-	private static void addPMoJoPai() {
-		addMoJoPai(1,"p");
-		addMoJoPai(2,"p");
-		addMoJoPai(3,"p");
-		addMoJoPai(4,"p");
-		addRedMoJoPai(5,"p");
-		addMoJoPai(6,"p");
-		addMoJoPai(7,"p");
-		addMoJoPai(8,"p");
-		addMoJoPai(9,"p");
-		
+	private static void addMoJoPai(String type) {
+		for (int i = 1; i < 10; i++) {
+			if(i==5){
+				addRedMoJoPai(5, type); continue;
+			}
+			addMoJoPai(i, type);
+		}
 	}
 
-	private static void addSMoJoPai() {
-		addMoJoPai(1,"s");
-		addMoJoPai(2,"s");
-		addMoJoPai(3,"s");
-		addMoJoPai(4,"s");
-		addRedMoJoPai(5,"s");
-		addMoJoPai(6,"s");
-		addMoJoPai(7,"s");
-		addMoJoPai(8,"s");
-		addMoJoPai(9,"s");
-		
+	private static void addMoJoPai(int s, String type) {
+		for (int i = 0; i < 4; i++) {
+			paizu.add(new MoJoPai(s, type, false, false));
+		}
 	}
 
-	private static void addMMoJoPai() {
-		addMoJoPai(1,"m");
-		addMoJoPai(2,"m");
-		addMoJoPai(3,"m");
-		addMoJoPai(4,"m");
-		addRedMoJoPai(5,"m");
-		addMoJoPai(6,"m");
-		addMoJoPai(7,"m");
-		addMoJoPai(8,"m");
-		addMoJoPai(9,"m");
-		
-	}
-
-	private static void addMoJoPai(int s,String type) {
-		
-		paizu.add(new MoJoPai(s ,type, false, false));
-		paizu.add(new MoJoPai(s ,type, false, false));
-		paizu.add(new MoJoPai(s ,type, false, false));
-		paizu.add(new MoJoPai(s ,type, false, false));
-	}
-
-	private static void addRedMoJoPai(int s,String type) {
-		paizu.add(new MoJoPai(s ,type, true, true));
-		paizu.add(new MoJoPai(s ,type, false, false));
-		paizu.add(new MoJoPai(s ,type, false, false));
-		paizu.add(new MoJoPai(s ,type, false, false));
+	private static void addRedMoJoPai(int s, String type) {
+		paizu.add(new MoJoPai(s, type, true, true));
+		for (int i = 0; i < 3; i++) {
+			paizu.add(new MoJoPai(s, type, false, false));
+		}
 	}
 
 	@Override
-	//TEST DONE
+	// TEST DONE
 	public Boolean isGreatter(MoJoPai p1, MoJoPai p2) {
-		
 
-		if (p1.type.compareTo(p2.type)>0) {
+		if (p1.type.compareTo(p2.type) > 0) {
 			return true;
 		}
 		if (p1.type.equals(p2.type)) {
 			if (p1.code > p2.code) {
 				return true;
 			}
-			if (p1.code== p2.code && p1.type.equals( p2.type) && p2.isRed) {
+			if (p1.code == p2.code && p1.type.equals(p2.type) && p2.isRed) {
 				return true;
 			}
 			return false;
@@ -155,7 +122,7 @@ public class DefaultMojongService implements MojoService {
 	}
 
 	@Override
-	
+
 	public Boolean isQiDuiZiWaiting(List<MoJoPai> player) {
 		int qiduiziCount = 0;
 		for (int i = 0; i < player.size() - 1; i++) {
@@ -168,56 +135,54 @@ public class DefaultMojongService implements MojoService {
 		}
 		return false;
 	}
-	
-	
+
 	@Override
-	//TEST DONE
+	// TEST DONE
 	public Boolean isYaoJiu(MoJoPai pai) {
-		if(pai.code==1||pai.code==9||pai.type.equals("z")){
+		if (pai.code == 1 || pai.code == 9 || pai.type.equals("z")) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public Boolean isCanRon(List<MoJoPai> player) {
-		
+
 		return null;
 	}
-	
-	//TEST DONE
-	public List<MoJoPai> createMoJoPais(String text){
-		
-		List<MoJoPai> list = new ArrayList<MoJoPai>();
-	      String pattern = "(\\d*m+)?(\\d*p+)?(\\d*s+)?(\\d*z+)?";
-	      
-	      Pattern r = Pattern.compile(pattern);
-	      Matcher m = r.matcher(text);
-	      if(m.find()){//must judge
-		      String mpart =m.group(1);
-		      String ppart =m.group(2);
-		      String spart =m.group(3);
-		      String zpart =m.group(4);
-		      mpart=StringUtils.replace(mpart,"m","");
-		      ppart=StringUtils.replace(ppart,"p","");
-		      spart=StringUtils.replace(spart,"s","");
-		      zpart=StringUtils.replace(zpart,"z","");
 
-		      create(list, mpart,"m");
-		      create(list, ppart,"p");
-		      create(list, spart,"s");
-		      create(list, zpart,"z");
-		      return list;
-	      }
-	      return null;
+	// TEST DONE
+	public List<MoJoPai> createMoJoPais(String text) {
+
+		List<MoJoPai> list = new ArrayList<MoJoPai>();
+		String pattern = "(\\d*m+)?(\\d*p+)?(\\d*s+)?(\\d*z+)?";
+
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(text);
+		if (m.find()) {// must judge
+			String mpart = m.group(1);
+			String ppart = m.group(2);
+			String spart = m.group(3);
+			String zpart = m.group(4);
+			mpart = StringUtils.replace(mpart, "m", "");
+			ppart = StringUtils.replace(ppart, "p", "");
+			spart = StringUtils.replace(spart, "s", "");
+			zpart = StringUtils.replace(zpart, "z", "");
+
+			create(list, mpart, "m");
+			create(list, ppart, "p");
+			create(list, spart, "s");
+			create(list, zpart, "z");
+			return list;
+		}
+		return null;
 	}
 
-
-	private void create(List<MoJoPai> list, String part,String type) {
-		if(part!=null){
-		for(int i=0;i<part.length();i++){
-	    	  list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type));
-	      }
+	private void create(List<MoJoPai> list, String part, String type) {
+		if (part != null) {
+			for (int i = 0; i < part.length(); i++) {
+				list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type));
+			}
 		}
 	}
 }
