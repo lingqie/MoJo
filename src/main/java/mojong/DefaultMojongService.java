@@ -1,6 +1,7 @@
 package mojong;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -46,8 +47,9 @@ public class DefaultMojongService implements MojoService {
 
 	private static void addMoJoPai(String type) {
 		for (int i = 1; i < 10; i++) {
-			if(i==5){
-				addRedMoJoPai(5, type); continue;
+			if (i == 5) {
+				addRedMoJoPai(5, type);
+				continue;
 			}
 			addMoJoPai(i, type);
 		}
@@ -130,6 +132,23 @@ public class DefaultMojongService implements MojoService {
 			}
 		}
 		if (qiduiziCount >= 6) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public Boolean isGuoShiWuShuang(List<MoJoPai> player) {
+		int yaojiuCount = 0;
+		for (MoJoPai moJoPai : paizu) {
+			if (isYaoJiu(moJoPai)) {
+				yaojiuCount++;
+			}
+		}
+		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(paizu));
+		// waiting yaojiu size 13 ,list size should be 12~13
+		// reach yaojiu size 14,list size should be 13
+		if (yaojiuCount >= 13 && list.size() >= 12) {
 			return true;
 		}
 		return false;

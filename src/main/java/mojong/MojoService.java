@@ -10,5 +10,6 @@ public interface MojoService {
 	public void showPai(List<MoJoPai> all,String name,int line,Boolean isAdmin);
 	public Boolean isQiDuiZiWaiting(List<MoJoPai> player);
 	public Boolean isCanRon(List<MoJoPai> player);
+	public Boolean isGuoShiWuShuang(List<MoJoPai> player);
 	
 }
