@@ -26,6 +26,9 @@ public class MoJoPai {
 	public MoJoPai(int code, String type) {
 		this.code = code;
 		this.type = type;
+		if(code==0){
+			this.code=5;
+		}
 		this.isDora = false;
 		this.isRed = false;
 	}
@@ -33,6 +36,9 @@ public class MoJoPai {
 	public MoJoPai(int code, String type, Boolean isDora, Boolean isRed) {
 		this.code = code;
 		this.type = type;
+		if(code==0){
+			this.code=5;
+		}
 		this.isDora = isDora;
 		this.isRed = isRed;
 	}

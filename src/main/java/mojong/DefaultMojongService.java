@@ -136,12 +136,12 @@ public class DefaultMojongService implements MojoService {
 	// TEST DONE
 	public Boolean isGuoShiWuShuang(List<MoJoPai> player) {
 		int yaojiuCount = 0;
-		for (MoJoPai moJoPai : paizu) {
+		for (MoJoPai moJoPai : player) {
 			if (isYaoJiu(moJoPai)) {
 				yaojiuCount++;
 			}
 		}
-		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(paizu));
+		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(player));
 		// waiting yaojiu size 13 ,list size should be 12~13
 		// reach yaojiu size 14,list size should be 13
 		if (yaojiuCount >= 13 && list.size() >= 12) {
@@ -207,6 +207,9 @@ public class DefaultMojongService implements MojoService {
 	private void create(List<MoJoPai> list, String part, String type) {
 		if (part != null) {
 			for (int i = 0; i < part.length(); i++) {
+				if(part.charAt(i)=='0'){
+					list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type,true,true));continue;
+				}
 				list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type));
 			}
 		}

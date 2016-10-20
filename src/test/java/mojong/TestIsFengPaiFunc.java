@@ -1,28 +1,22 @@
 package mojong;
+import org.testng.annotations.Test;
+
 import mojong.MoJoPai;
 
 public class TestIsFengPaiFunc {
-	public static void main(String[] args) {
-		System.out.println(isFengPai(new MoJoPai("1z")));
-		System.out.println(isFengPai(new MoJoPai("2z")));
-		System.out.println(isFengPai(new MoJoPai("3z")));
-		System.out.println(isFengPai(new MoJoPai("4z")));
-		System.out.println(isFengPai(new MoJoPai("5z")));
-		System.out.println(isFengPai(new MoJoPai("7z")));
-		System.out.println(isFengPai(new MoJoPai("9s")));
-		System.out.println(isFengPai(new MoJoPai("1s")));
-		System.out.println(isFengPai(new MoJoPai("5s")));
-		System.out.println(isFengPai(new MoJoPai("1m")));
+	@Test
+	public  void TestIsFengPaiFunc() {
+		DefaultMojongService mojongService = new DefaultMojongService();
+		assert mojongService.isFengPai(new MoJoPai("1z"))==true;
+		assert mojongService.isFengPai(new MoJoPai("2z"))==true;
+		assert mojongService.isFengPai(new MoJoPai("3z"))==true;
+		assert mojongService.isFengPai(new MoJoPai("4z"))==true;
+		assert mojongService.isFengPai(new MoJoPai("5z"))==false;
+		assert mojongService.isFengPai(new MoJoPai("7z"))==false;
+		assert mojongService.isFengPai(new MoJoPai("9s"))==false;
+		assert mojongService.isFengPai(new MoJoPai("1s"))==false;
+		assert mojongService.isFengPai(new MoJoPai("5s"))==false;
+		assert mojongService.isFengPai(new MoJoPai("1m"))==false;
 		
-	}
-	
-	public static Boolean isFengPai(MoJoPai pai) {
-		if (pai.toPlayerString().equals("1z") || pai.toPlayerString().equals("2z")
-				|| pai.toPlayerString().equals("3z")
-				|| pai.toPlayerString().equals("4z")) 
-		{
-			return true;
-		}
-		return false;
 	}
 }
