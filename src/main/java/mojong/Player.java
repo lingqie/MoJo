@@ -10,16 +10,16 @@ public class Player {
 
 	public Player() {
 		this.playerPaiZu = new ArrayList<MoJoPai>();
-		this.Score=0;
+		this.Score = 0;
 	}
-	
-	public Player(List<MoJoPai> pai){
-		this.playerPaiZu=pai;
+
+	public Player(List<MoJoPai> pai) {
+		this.playerPaiZu = pai;
 	}
-	
-	public Player(List<MoJoPai> pai,int score){
-		this.Score=score;
-		this.playerPaiZu=pai;
+
+	public Player(List<MoJoPai> pai, int score) {
+		this.Score = score;
+		this.playerPaiZu = pai;
 	}
 
 	public int getScore() {
@@ -29,8 +29,6 @@ public class Player {
 	public void setScore(int score) {
 		Score = score;
 	}
-
-	
 
 	public List<MoJoPai> getPlayerPaiZu() {
 		return playerPaiZu;

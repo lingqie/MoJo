@@ -97,13 +97,8 @@ public class DefaultMojongService implements MojoService {
 					player.set(i + 1, player.get(i));
 					player.set(i, tmp);
 				}
-				// System.out.print("di "+(count++)+" ci");
-				// showPlayer1VersionString();
-				// System.out.println("");
-				// System.out.println("");
 			}
 		}
-
 	}
 
 	@Override
@@ -136,8 +131,9 @@ public class DefaultMojongService implements MojoService {
 		}
 		return false;
 	}
-	
+
 	@Override
+	// TEST DONE
 	public Boolean isGuoShiWuShuang(List<MoJoPai> player) {
 		int yaojiuCount = 0;
 		for (MoJoPai moJoPai : paizu) {
@@ -158,6 +154,18 @@ public class DefaultMojongService implements MojoService {
 	// TEST DONE
 	public Boolean isYaoJiu(MoJoPai pai) {
 		if (pai.code == 1 || pai.code == 9 || pai.type.equals("z")) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	//TEST DONE
+	public Boolean isFengPai(MoJoPai pai) {
+		if (pai.toPlayerString().equals("1z") || pai.toPlayerString().equals("2z")
+				|| pai.toPlayerString().equals("3z")
+				|| pai.toPlayerString().equals("4z")) 
+		{
 			return true;
 		}
 		return false;
