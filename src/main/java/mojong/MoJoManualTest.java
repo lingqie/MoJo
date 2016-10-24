@@ -48,7 +48,6 @@ public class MoJoManualTest {
 		mojongService.showPai(player3.getPlayerPaiZu(), "player3", 1, true);
 		mojongService.showPai(player4.getPlayerPaiZu(), "player4", 1, true);
 
-		initPaiShan();
 
 		mojongService.showPai(paiShan, "paishan", 2, true);
 		initLingShangPai();
@@ -92,11 +91,7 @@ public class MoJoManualTest {
 		}
 	}
 
-	private static void initPaiShan() {
-		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
-			paiShan.add(paizu2.get(i));
-		}
-	}
+	
 
 	public static void showPlayerString(List<MoJoPai> p, String who, Boolean isAdmin) {
 		System.out.println("");

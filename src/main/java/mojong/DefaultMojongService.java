@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class DefaultMojongService implements MojoService {
 	private static List<MoJoPai> paizu;
-	public static int zongPaiShu = 108 + 28;
+	private static List<MoJoPai> paizu2;
+	private static List<MoJoPai> paiShan;
+	public static int zongPaiShu = 108 + 28;//136
 	// player pai 13*4
 	// paishan 70
 	// lingshang 14
@@ -25,8 +27,15 @@ public class DefaultMojongService implements MojoService {
 		addMoJoPai("p");
 		addMoJoPai("s");
 		addZMoJoPai();
-		List<MoJoPai> paizu2 = randomPaizu();
+		paizu2 = randomPaizu();
+		initPaiShan();
 		return paizu2;
+	}
+	
+	private static void initPaiShan() {
+		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
+			paiShan.add(paizu2.get(i));
+		}
 	}
 
 	private List<MoJoPai> randomPaizu() {
@@ -89,7 +98,6 @@ public class DefaultMojongService implements MojoService {
 
 	@Override
 	public void toSortPlayerPaizu(List<MoJoPai> player) {
-		int count = 1;
 		for (int j = 0; j < player.size(); j++) {
 			for (int i = 0; i < player.size() - 1 - j; i++) {
 				if (isGreatter(player.get(i), player.get(i + 1))) {
@@ -143,7 +151,7 @@ public class DefaultMojongService implements MojoService {
 		}
 		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(player));
 		// waiting yaojiu size 13 ,list size should be 12~13
-		// reach yaojiu size 14,list size should be 13
+		// ron yaojiu size 14,list size should be 13
 		if (yaojiuCount >= 13 && list.size() >= 12) {
 			return true;
 		}
@@ -153,19 +161,17 @@ public class DefaultMojongService implements MojoService {
 	@Override
 	// TEST DONE
 	public Boolean isYaoJiu(MoJoPai pai) {
-		if (pai.code == 1 || pai.code == 9 || pai.type.equals("z")) {
+		if (pai.type.equals("z") || pai.code == 1 || pai.code == 9) {
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	//TEST DONE
+	// TEST DONE
 	public Boolean isFengPai(MoJoPai pai) {
-		if (pai.toPlayerString().equals("1z") || pai.toPlayerString().equals("2z")
-				|| pai.toPlayerString().equals("3z")
-				|| pai.toPlayerString().equals("4z")) 
-		{
+		if (pai.toPlayerString().equals("1z") || pai.toPlayerString().equals("2z") || pai.toPlayerString().equals("3z")
+				|| pai.toPlayerString().equals("4z")) {
 			return true;
 		}
 		return false;
@@ -207,11 +213,14 @@ public class DefaultMojongService implements MojoService {
 	private void create(List<MoJoPai> list, String part, String type) {
 		if (part != null) {
 			for (int i = 0; i < part.length(); i++) {
-				if(part.charAt(i)=='0'){
-					list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type,true,true));continue;
+				if (part.charAt(i) == '0') {
+					list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type, true, true));
+					continue;
 				}
 				list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type));
 			}
 		}
 	}
+	
+	
 }
