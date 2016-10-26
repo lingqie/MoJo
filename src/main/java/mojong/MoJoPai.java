@@ -8,6 +8,7 @@ public class MoJoPai {
 	public String type;// m,s,p,z
 	public Boolean isDora;
 	public Boolean isRed;
+	public Boolean isCanLook;
 
 	public MoJoPai(String suoxie) {
 		if (suoxie.charAt(0) == 'R') {
@@ -15,32 +16,49 @@ public class MoJoPai {
 			this.type = String.valueOf(suoxie.charAt(2));
 			this.isDora = true;
 			this.isRed = true;
+			this.isCanLook = true;
 		} else {
 			this.code = Character.getNumericValue(suoxie.charAt(0));
 			this.type = String.valueOf(suoxie.charAt(1));
 			this.isDora = false;
 			this.isRed = false;
+			this.isCanLook = true;
 		}
 	}
 
 	public MoJoPai(int code, String type) {
 		this.code = code;
 		this.type = type;
-		if(code==0){
-			this.code=5;
+		if (code == 0) {
+			this.code = 5;
 		}
 		this.isDora = false;
 		this.isRed = false;
+		this.isCanLook = true;
 	}
 
 	public MoJoPai(int code, String type, Boolean isDora, Boolean isRed) {
 		this.code = code;
 		this.type = type;
-		if(code==0){
-			this.code=5;
+		if (code == 0) {
+			this.code = 5;
 		}
 		this.isDora = isDora;
 		this.isRed = isRed;
+		this.isCanLook = true;
+
+	}
+
+	public MoJoPai(int code, String type, Boolean isDora, Boolean isRed, Boolean isCanLook) {
+		this.code = code;
+		this.type = type;
+		if (code == 0) {
+			this.code = 5;
+		}
+		this.isDora = isDora;
+		this.isRed = isRed;
+		this.isCanLook = isCanLook;
+
 	}
 
 	public int getCode() {
@@ -65,6 +83,14 @@ public class MoJoPai {
 
 	public void setIsRed(Boolean isRed) {
 		this.isRed = isRed;
+	}
+
+	public Boolean getIsCanLook() {
+		return isCanLook;
+	}
+
+	public void setIsCanLook(Boolean isCanLook) {
+		this.isCanLook = isCanLook;
 	}
 
 	@Override

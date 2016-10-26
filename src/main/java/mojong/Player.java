@@ -7,6 +7,15 @@ public class Player {
 
 	public int Score;
 	public List<MoJoPai> playerPaiZu;
+	public PaiHe paihe;
+
+	public PaiHe getPaihe() {
+		return paihe;
+	}
+
+	public void setPaihe(PaiHe paihe) {
+		this.paihe = paihe;
+	}
 
 	public Player() {
 		this.playerPaiZu = new ArrayList<MoJoPai>();

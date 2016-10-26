@@ -5,6 +5,6 @@ public interface PlayerService {
 	public void peng();
 	public void gang();
 	public void ron();
-	public void shePai();
-	public void moPai();
+	public void shePai(MoJoPai pai);
+	public void moPai(MoJoPai pai);
 }

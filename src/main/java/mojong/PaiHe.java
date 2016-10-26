@@ -1,20 +1,29 @@
 package mojong;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaiHe {
-	public List<MoJoPai> visualPaiHe;
 	public List<MoJoPai> truePaiZu;
+	
 	public List<MoJoPai> getVisualPaiHe() {
-		return visualPaiHe;
+		List<MoJoPai> visualPaihe=new ArrayList<MoJoPai>();
+		for (MoJoPai moJoPai : truePaiZu) {
+			if (moJoPai.getIsCanLook()) {
+				visualPaihe.add(moJoPai);
+			}
+		}
+		return  visualPaihe;
 	}
-	public void setVisualPaiHe(List<MoJoPai> visualPaiHe) {
-		this.visualPaiHe = visualPaiHe;
-	}
+	
 	public List<MoJoPai> getTruePaiZu() {
 		return truePaiZu;
 	}
 	public void setTruePaiZu(List<MoJoPai> truePaiZu) {
 		this.truePaiZu = truePaiZu;
+	}
+	
+	public void add(MoJoPai pai){
+		this.truePaiZu.add(pai);
 	}
 }

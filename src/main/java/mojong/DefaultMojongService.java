@@ -15,7 +15,7 @@ public class DefaultMojongService implements MojoService {
 	private static List<MoJoPai> paizu;
 	private static List<MoJoPai> paizu2;
 	private static List<MoJoPai> paiShan;
-	public static int zongPaiShu = 108 + 28;//136
+	public static int zongPaiShu = 108 + 28;// 136
 	// player pai 13*4
 	// paishan 70
 	// lingshang 14
@@ -31,7 +31,7 @@ public class DefaultMojongService implements MojoService {
 		initPaiShan();
 		return paizu2;
 	}
-	
+
 	private static void initPaiShan() {
 		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
 			paiShan.add(paizu2.get(i));
@@ -123,6 +123,20 @@ public class DefaultMojongService implements MojoService {
 				System.out.print("\n");
 			}
 		}
+	}
+
+	@Override
+	public String getPaiString(List<MoJoPai> all, Boolean isAdmin) {
+		String s = new String();
+		for (MoJoPai moJoPai : all) {
+			if (isAdmin) {
+				s = s + moJoPai.toString();
+			} else {
+				s = s + moJoPai.toPlayerString();
+			}
+
+		}
+		return s;
 	}
 
 	@Override
@@ -221,6 +235,5 @@ public class DefaultMojongService implements MojoService {
 			}
 		}
 	}
-	
-	
+
 }

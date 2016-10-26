@@ -27,15 +27,18 @@ public class DefaultPlayerService implements PlayerService {
 	}
 
 	@Override
-	public void shePai() {
+	public void shePai(MoJoPai pai) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void moPai() {
+	public void moPai(MoJoPai pai) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+
 	
 }

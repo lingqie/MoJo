@@ -12,4 +12,5 @@ public interface MojoService {
 	public Boolean isCanRon(List<MoJoPai> player);
 	public Boolean isGuoShiWuShuang(List<MoJoPai> player);
 	public Boolean isFengPai(MoJoPai pai);
+	public String getPaiString(List<MoJoPai> all, Boolean isAdmin);
 }
