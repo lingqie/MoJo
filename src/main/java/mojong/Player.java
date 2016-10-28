@@ -8,6 +8,15 @@ public class Player {
 	public int Score;
 	public List<MoJoPai> playerPaiZu;
 	public PaiHe paihe;
+	public Boolean isZhuangjia;
+
+	public Boolean getIsZhuangjia() {
+		return isZhuangjia;
+	}
+
+	public void setIsZhuangjia(Boolean isZhuangjia) {
+		this.isZhuangjia = isZhuangjia;
+	}
 
 	public PaiHe getPaihe() {
 		return paihe;

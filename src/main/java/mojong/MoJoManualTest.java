@@ -91,8 +91,6 @@ public class MoJoManualTest {
 		}
 	}
 
-	
-
 	public static void showPlayerString(List<MoJoPai> p, String who, Boolean isAdmin) {
 		System.out.println("");
 		System.out.println(who + ":");
@@ -106,7 +104,5 @@ public class MoJoManualTest {
 			}
 		}
 	}
-
-	
 
 }

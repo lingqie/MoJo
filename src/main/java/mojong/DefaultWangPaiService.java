@@ -1,17 +1,14 @@
 package mojong;
 
+import java.util.List;
+
 public class DefaultWangPaiService implements WangPaiService {
-
 	@Override
-	public void add() {
-		// TODO Auto-generated method stub
-
+	public MoJoPai getLastWangPai(WangPai wangpai){
+		List<MoJoPai> wangpais = wangpai.getWangpais();
+		MoJoPai pai = wangpais.get(wangpais.size()-1);
+		return pai;
 	}
-
-	@Override
-	public void remove() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
+	
 }

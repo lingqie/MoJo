@@ -2,7 +2,22 @@
  <suite name="My test suite"> 
   <test name="First test"> 
     <classes> 
-       <class name="mojong.TestIsQiDuiZi" /> 
+    
+       <class name="mojong.TestMoJo" /> 
+       <class name="mojong.TestDefaultMoJoService" /> 
+       <class name="mojong.TestDefaultMoJoService2" /> 
+       <class name="mojong.TestDefaultMoJoService3" /> 
+       <class name="mojong.TestDefaultMoJoService4" /> 
+       <class name="mojong.TestDefaultMoJoService5" /> 
+       <class name="mojong.TestDefaultMoJoService6" /> 
+       <class name="mojong.TestDefaultMoJoService7" /> 
+       
+       <class name="mojong.TestDefaultPaiHeService" /> 
+       <class name="mojong.TestDefaultPaiHeService2" /> 
+       
+       <class name="mojong.TestDefaultScoreService" /> 
+       <class name="mojong.TestDefaultScoreService2" /> 
+       
     </classes> 
   </test> 
  </suite>
