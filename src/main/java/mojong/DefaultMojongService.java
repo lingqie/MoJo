@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class DefaultMojongService implements MojoService {
 	private static List<MoJoPai> paizu;
 	private static List<MoJoPai> paizu2;
-	private static List<MoJoPai> paiShan;
 	public static int zongPaiShu = 108 + 28;// 136
 	// player pai 13*4
 	// paishan 70
@@ -28,15 +27,14 @@ public class DefaultMojongService implements MojoService {
 		addMoJoPai("s");
 		addZMoJoPai();
 		paizu2 = randomPaizu();
-		initPaiShan();
 		return paizu2;
 	}
 
-	private static void initPaiShan() {
-		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
-			paiShan.add(paizu2.get(i));
-		}
-	}
+//	private static void initPaiShan() {
+//		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
+//			paiShan.add(paizu2.get(i));
+//		}
+//	}
 
 	private List<MoJoPai> randomPaizu() {
 		List<MoJoPai> paizu2 = new ArrayList<MoJoPai>();

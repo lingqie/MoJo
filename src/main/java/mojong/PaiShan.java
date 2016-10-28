@@ -3,14 +3,14 @@ package mojong;
 import java.util.List;
 
 public class PaiShan {
-	public List<MoJoPai> playerShan;
+	public List<MoJoPai> paishan;
 
 	public List<MoJoPai> getPlayerShan() {
-		return playerShan;
+		return paishan;
 	}
 
 	public void setPlayerShan(List<MoJoPai> playerShan) {
-		this.playerShan = playerShan;
+		this.paishan = playerShan;
 	}
 	
 }

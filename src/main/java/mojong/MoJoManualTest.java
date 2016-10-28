@@ -12,16 +12,14 @@ public class MoJoManualTest {
 	public static Player player2;
 	public static Player player3;
 	public static Player player4;
-//	public static List<MoJoPai> player1;
-//	public static List<MoJoPai> player2;
-//	public static List<MoJoPai> player3;
-//	public static List<MoJoPai> player4;
 	public static List<MoJoPai> player1PaiHe;
 	public static List<MoJoPai> player2PaiHe;
 	public static List<MoJoPai> player3PaiHe;
 	public static List<MoJoPai> player4PaiHe;
-	public static List<MoJoPai> lingShangPai;
-	public static List<MoJoPai> paiShan;
+	public static WangPai wangPai;
+	public static PaiShan paiShan;
+	
+	
 
 	public static int zongPaiShu = 108 + 28;
 	// player pai 13*4
@@ -33,14 +31,15 @@ public class MoJoManualTest {
 		player2=new Player();
 		player3=new Player();
 		player4=new Player();
-		lingShangPai=new ArrayList<MoJoPai>();
-		paiShan=new ArrayList<MoJoPai>();
+		wangPai=new WangPai();
+		paiShan=new PaiShan();
 		
 		
 		DefaultMojongService mojongService = new DefaultMojongService();
 
 		paizu2=mojongService.initDeafaultPaiZu();
 		mojongService.showPai(paizu2, "zongpaizu", 4, true);
+		
 		initPlayerPai();
 
 		mojongService.showPai(player1.getPlayerPaiZu(), "player1", 1, true);
@@ -49,9 +48,9 @@ public class MoJoManualTest {
 		mojongService.showPai(player4.getPlayerPaiZu(), "player4", 1, true);
 
 
-		mojongService.showPai(paiShan, "paishan", 2, true);
-		initLingShangPai();
-		mojongService.showPai(lingShangPai, "lingshangpai", 2, true);
+		mojongService.showPai(paiShan.getPlayerShan(), "paishan", 2, true);
+//		initLingShangPai();
+		mojongService.showPai(wangPai.getWangpais(), "lingshangpai", 2, true);
 
 		// showPlayerString(player1, "player1", false);
 		// showPlayerString(player1, "player1", true);
@@ -71,15 +70,14 @@ public class MoJoManualTest {
 		mojongService.showPai(player2.getPlayerPaiZu(), "player2", 1, false);
 		mojongService.showPai(player3.getPlayerPaiZu(), "player3", 1, false);
 		mojongService.showPai(player4.getPlayerPaiZu(), "player4", 1, false);
-
 	}
 
-	private static void initLingShangPai() {
-		// get lingshang
-		for (int i = zongPaiShu - 14; i < zongPaiShu; i++) {
-			lingShangPai.add(paizu2.get(i));
-		}
-	}
+//	private static void initLingShangPai() {
+//		// get lingshang
+//		for (int i = zongPaiShu - 14; i < zongPaiShu; i++) {
+//			wangPai.add(paizu2.get(i));
+//		}
+//	}
 
 	private static void initPlayerPai() {
 		// fapai
