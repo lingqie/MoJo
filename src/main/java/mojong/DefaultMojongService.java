@@ -191,16 +191,13 @@ public class DefaultMojongService implements MojoService {
 
 	@Override
 	public Boolean isCanRon(List<MoJoPai> player) {
-
 		return null;
 	}
 
 	// TEST DONE
 	public List<MoJoPai> createMoJoPais(String text) {
-
 		List<MoJoPai> list = new ArrayList<MoJoPai>();
 		String pattern = "(\\d*m+)?(\\d*p+)?(\\d*s+)?(\\d*z+)?";
-
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(text);
 		if (m.find()) {// must judge
@@ -231,6 +228,29 @@ public class DefaultMojongService implements MojoService {
 				}
 				list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type));
 			}
+		}
+	}
+	
+	public  void initPlayerPai(Room room) {
+		// fapai
+		List<MoJoPai> paizu2 = room.getMojoPaiZu().getPaizu();
+		for (int i = 0; i < 13; i++) {
+			room.getPlayer1().getPlayerPaiZu().add(paizu2.get(i));
+			room.getPlayer2().getPlayerPaiZu().add(paizu2.get(i + 13 * 1));
+			room.getPlayer3().getPlayerPaiZu().add(paizu2.get(i + 13 * 2));
+			room.getPlayer4().getPlayerPaiZu().add(paizu2.get(i + 13 * 3));
+		}
+	}
+
+	public void initWangPai(Room room) {
+		for (int i = zongPaiShu - 14; i < zongPaiShu; i++) {
+			room.getMojoPaiZu().getWangPai().getWangpais().add(paizu2.get(i));
+		}
+	}
+
+	public void initPaiShan(Room room) {
+		for (int i = 13*4; i < zongPaiShu-14; i++) {
+			room.getMojoPaiZu().getPaiShan().getPaiShan().add(paizu2.get(i));
 		}
 	}
 

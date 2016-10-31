@@ -9,6 +9,21 @@ public class Player {
 	public List<MoJoPai> playerPaiZu;
 	public PaiHe paihe;
 	public Boolean isZhuangjia;
+	public int fangwei;
+
+	public Player() {
+		this.playerPaiZu = new ArrayList<MoJoPai>();
+		this.Score = 0;
+		this.paihe = new PaiHe();
+	}
+
+	public int getFangwei() {
+		return fangwei;
+	}
+
+	public void setFangwei(int fangwei) {
+		this.fangwei = fangwei;
+	}
 
 	public Boolean getIsZhuangjia() {
 		return isZhuangjia;
@@ -24,11 +39,6 @@ public class Player {
 
 	public void setPaihe(PaiHe paihe) {
 		this.paihe = paihe;
-	}
-
-	public Player() {
-		this.playerPaiZu = new ArrayList<MoJoPai>();
-		this.Score = 0;
 	}
 
 	public Player(List<MoJoPai> pai) {

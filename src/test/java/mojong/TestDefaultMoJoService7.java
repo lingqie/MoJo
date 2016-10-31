@@ -1,10 +1,6 @@
 package mojong;
 
-import java.util.List;
-
 import org.testng.annotations.Test;
-
-import mojong.MoJoPai;
 
 public class TestDefaultMoJoService7 {
 	@Test

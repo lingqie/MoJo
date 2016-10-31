@@ -6,7 +6,7 @@ import mojong.MoJoPai;
 
 public class TestMoJo {
 	@Test
-	public void TestMoJo() {
+	public void TestNewssMoJo() {
 
 		assert new MoJoPai("1s").hashCode() == new MoJoPai("1s").hashCode();
 		assert new MoJoPai("5s").hashCode() != new MoJoPai("1s").hashCode();

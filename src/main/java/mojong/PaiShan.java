@@ -1,15 +1,20 @@
 package mojong;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaiShan {
 	public List<MoJoPai> paishan;
-
-	public List<MoJoPai> getPlayerShan() {
+	
+	public PaiShan(){
+		this.paishan=new ArrayList<MoJoPai>(); 
+	}
+	
+	public List<MoJoPai> getPaiShan() {
 		return paishan;
 	}
 
-	public void setPlayerShan(List<MoJoPai> playerShan) {
+	public void setPaiShan(List<MoJoPai> playerShan) {
 		this.paishan = playerShan;
 	}
 	
