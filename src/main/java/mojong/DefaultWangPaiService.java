@@ -11,4 +11,6 @@ public class DefaultWangPaiService implements WangPaiService {
 	}
 	
 	
+	
+	
 }

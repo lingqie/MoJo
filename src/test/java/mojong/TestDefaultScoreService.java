@@ -86,5 +86,7 @@ public class TestDefaultScoreService {
 		assert scoreService.shouldPay(scoreService.getJiBenDian(100, 1), false, false, false)==800;
 		assert scoreService.shouldPay(scoreService.getJiBenDian(110, 1), false, false, false)==900;
 		
+		
+		
 	}
 }

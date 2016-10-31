@@ -9,6 +9,12 @@ public class Room {
 	public Player player4;
 	public static List<MoJoPai> paizu;
 	
+	public static List<MoJoPai> getPaizu() {
+		return paizu;
+	}
+	public static void setPaizu(List<MoJoPai> paizu) {
+		Room.paizu = paizu;
+	}
 	public Player getPlayer1() {
 		return player1;
 	}
