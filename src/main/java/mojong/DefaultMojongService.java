@@ -30,12 +30,6 @@ public class DefaultMojongService implements MojoService {
 		return paizu2;
 	}
 
-	// private static void initPaiShan() {
-	// for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
-	// paiShan.add(paizu2.get(i));
-	// }
-	// }
-
 	private List<MoJoPai> randomPaizu() {
 		List<MoJoPai> paizu2 = new ArrayList<MoJoPai>();
 		for (int i = 0; i < zongPaiShu; i++) {
@@ -106,7 +100,8 @@ public class DefaultMojongService implements MojoService {
 			}
 		}
 	}
-	
+
+	@Override
 	public void toSortPlayerPaizu(Player player) {
 		for (int j = 0; j < player.getPlayerPaiZu().size(); j++) {
 			for (int i = 0; i < player.getPlayerPaiZu().size() - 1 - j; i++) {
@@ -150,7 +145,6 @@ public class DefaultMojongService implements MojoService {
 	}
 
 	@Override
-
 	public Boolean isQiDuiZiWaiting(List<MoJoPai> player) {
 		int qiduiziCount = 0;
 		for (int i = 0; i < player.size() - 1; i++) {
@@ -176,7 +170,7 @@ public class DefaultMojongService implements MojoService {
 		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(player));
 		// waiting yaojiu size 13 ,list size should be 12~13
 		// ron yaojiu size 14,list size should be 13
-		if (yaojiuCount >= 13 && list.size() >= 12) {
+		if (yaojiuCount >= 13 && list.size() == 13) {
 			return true;
 		}
 		return false;
@@ -203,9 +197,15 @@ public class DefaultMojongService implements MojoService {
 
 	@Override
 	public Boolean isCanRon(List<MoJoPai> player) {
+		//1fan duanyao
+		//hunyise
+		//qingyise
+		
+		
 		return null;
 	}
 
+	@Override
 	// TEST DONE
 	public List<MoJoPai> createMoJoPais(String text) {
 		List<MoJoPai> list = new ArrayList<MoJoPai>();
@@ -231,6 +231,14 @@ public class DefaultMojongService implements MojoService {
 		return null;
 	}
 
+	// public String createMoJoPaisText(List<MoJoPai> pais){
+	// String s=new String();
+	// for (MoJoPai moJoPai : pais) {
+	// s=s+moJoPai.toPlayerString();
+	// }
+	// return s;
+	// }
+
 	private void create(List<MoJoPai> list, String part, String type) {
 		if (part != null) {
 			for (int i = 0; i < part.length(); i++) {
@@ -243,6 +251,7 @@ public class DefaultMojongService implements MojoService {
 		}
 	}
 
+	@Override
 	public void initPlayerPai(Room room) {
 		// fapai
 		List<MoJoPai> paizu2 = room.getMojoPaiZu().getPaizu();
@@ -254,16 +263,24 @@ public class DefaultMojongService implements MojoService {
 		}
 	}
 
+	@Override
 	public void initWangPai(Room room) {
 		for (int i = zongPaiShu - 14; i < zongPaiShu; i++) {
 			room.getWangPai().add(paizu2.get(i));
 		}
 	}
 
+	@Override
 	public void initPaiShan(Room room) {
 		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
 			room.getPaiShan().add(paizu2.get(i));
 		}
 	}
 
+	public Boolean isRon(List<MoJoPai> pais) {
+		if (isQiDuiZiWaiting(pais) || isGuoShiWuShuang(pais)) {
+			return true;
+		}
+		return false;
+	}
 }

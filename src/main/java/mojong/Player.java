@@ -1,7 +1,10 @@
 package mojong;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 public class Player {
 
@@ -64,5 +67,30 @@ public class Player {
 
 	public void setPlayerPaiZu(List<MoJoPai> playerPaiZu) {
 		this.playerPaiZu = playerPaiZu;
+	}
+	
+	public String getPlayerPaiZuString(){
+		String mpart = new String();
+		String ppart = new String();
+		String spart = new String();
+		String zpart = new String();
+		for (MoJoPai moJoPai : playerPaiZu) {
+			if (moJoPai.getType().equals("m")) {
+				mpart+=moJoPai.getCode();
+			}
+			if (moJoPai.getType().equals("p")) {
+				ppart+=moJoPai.getCode();
+			}
+			if (moJoPai.getType().equals("s")) {
+				spart+=moJoPai.getCode();
+			}
+			if (moJoPai.getType().equals("z")) {
+				zpart+=moJoPai.getCode();
+			}
+		}
+		String[] array={mpart,ppart,spart,zpart};
+		String s = StringUtils.join(array, ",");
+		return s;
+		
 	}
 }

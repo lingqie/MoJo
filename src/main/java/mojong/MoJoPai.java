@@ -29,12 +29,14 @@ public class MoJoPai {
 	public MoJoPai(int code, String type) {
 		this.code = code;
 		this.type = type;
-		if (code == 0) {
-			this.code = 5;
-		}
 		this.isDora = false;
 		this.isRed = false;
 		this.isCanLook = true;
+		if (code == 0) {
+			this.code = 5;
+			this.isDora = true;
+			this.isRed = true;
+		}
 	}
 
 	public MoJoPai(int code, String type, Boolean isDora, Boolean isRed) {
@@ -111,6 +113,11 @@ public class MoJoPai {
 		if (isRed) {
 			return "R" + code + type;
 		}
+		return code + type;
+	}
+	
+	public String toSuoxieString() {
+
 		return code + type;
 	}
 

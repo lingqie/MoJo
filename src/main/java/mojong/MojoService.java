@@ -13,4 +13,9 @@ public interface MojoService {
 	public Boolean isGuoShiWuShuang(List<MoJoPai> player);
 	public Boolean isFengPai(MoJoPai pai);
 	public String getPaiString(List<MoJoPai> all, Boolean isAdmin);
+	public void toSortPlayerPaizu(Player player);
+	public List<MoJoPai> createMoJoPais(String text);
+	public void initWangPai(Room room);
+	public void initPaiShan(Room room);
+	public void initPlayerPai(Room room);
 }
