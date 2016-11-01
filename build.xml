@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <project name="MoJo" default="info">
+	
+   <property file="build.properties"/>
+   <target name="info">
+      <echo>Apache Ant version is ${ant.version}</echo>
+      <echo>Apache Ant File is ${ant.file}</echo>
+      <echo>my name is ${name}</echo>
+   </target>
+
+</project>

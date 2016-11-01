@@ -30,11 +30,11 @@ public class DefaultMojongService implements MojoService {
 		return paizu2;
 	}
 
-//	private static void initPaiShan() {
-//		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
-//			paiShan.add(paizu2.get(i));
-//		}
-//	}
+	// private static void initPaiShan() {
+	// for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
+	// paiShan.add(paizu2.get(i));
+	// }
+	// }
 
 	private List<MoJoPai> randomPaizu() {
 		List<MoJoPai> paizu2 = new ArrayList<MoJoPai>();
@@ -102,6 +102,18 @@ public class DefaultMojongService implements MojoService {
 					MoJoPai tmp = player.get(i + 1);
 					player.set(i + 1, player.get(i));
 					player.set(i, tmp);
+				}
+			}
+		}
+	}
+	
+	public void toSortPlayerPaizu(Player player) {
+		for (int j = 0; j < player.getPlayerPaiZu().size(); j++) {
+			for (int i = 0; i < player.getPlayerPaiZu().size() - 1 - j; i++) {
+				if (isGreatter(player.getPlayerPaiZu().get(i), player.getPlayerPaiZu().get(i + 1))) {
+					MoJoPai tmp = player.getPlayerPaiZu().get(i + 1);
+					player.getPlayerPaiZu().set(i + 1, player.getPlayerPaiZu().get(i));
+					player.getPlayerPaiZu().set(i, tmp);
 				}
 			}
 		}
@@ -230,8 +242,8 @@ public class DefaultMojongService implements MojoService {
 			}
 		}
 	}
-	
-	public  void initPlayerPai(Room room) {
+
+	public void initPlayerPai(Room room) {
 		// fapai
 		List<MoJoPai> paizu2 = room.getMojoPaiZu().getPaizu();
 		for (int i = 0; i < 13; i++) {
@@ -244,13 +256,13 @@ public class DefaultMojongService implements MojoService {
 
 	public void initWangPai(Room room) {
 		for (int i = zongPaiShu - 14; i < zongPaiShu; i++) {
-			room.getMojoPaiZu().getWangPai().getWangpais().add(paizu2.get(i));
+			room.getWangPai().add(paizu2.get(i));
 		}
 	}
 
 	public void initPaiShan(Room room) {
-		for (int i = 13*4; i < zongPaiShu-14; i++) {
-			room.getMojoPaiZu().getPaiShan().getPaiShan().add(paizu2.get(i));
+		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
+			room.getPaiShan().add(paizu2.get(i));
 		}
 	}
 

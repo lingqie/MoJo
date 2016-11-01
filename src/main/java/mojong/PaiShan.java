@@ -18,4 +18,7 @@ public class PaiShan {
 		this.paishan = playerShan;
 	}
 	
+	public MoJoPai getFirstMoJo(){
+		return paishan.get(0);
+	}
 }
