@@ -8,7 +8,7 @@ public interface MojoService {
 	public Boolean isYaoJiu(MoJoPai pai);
 	public void toSortPlayerPaizu(List<MoJoPai> player);
 	public void showPai(List<MoJoPai> all,String name,int line,Boolean isAdmin);
-	public Boolean isQiDuiZiWaiting(List<MoJoPai> player);
+	public Boolean isQiDuiZi(List<MoJoPai> player);
 	public Boolean isCanRon(List<MoJoPai> player);
 	public Boolean isGuoShiWuShuang(List<MoJoPai> player);
 	public Boolean isFengPai(MoJoPai pai);

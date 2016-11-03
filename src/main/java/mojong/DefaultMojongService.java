@@ -120,14 +120,16 @@ public class DefaultMojongService implements MojoService {
 	}
 
 	@Override
-	public Boolean isQiDuiZiWaiting(List<MoJoPai> player) {
+	public Boolean isQiDuiZi(List<MoJoPai> player) {
 		int qiduiziCount = 0;
 		for (int i = 0; i < player.size() - 1; i++) {
 			if (player.get(i).equals(player.get(i + 1))) {
 				qiduiziCount++;
+				i++;
 			}
 		}
-		if (qiduiziCount >= 6) {
+		System.out.println(qiduiziCount);
+		if (qiduiziCount == 7) {
 			return true;
 		}
 		return false;
@@ -197,10 +199,10 @@ public class DefaultMojongService implements MojoService {
 			spart = StringUtils.replace(spart, "s", "");
 			zpart = StringUtils.replace(zpart, "z", "");
 			
-			System.out.println("mpart"+mpart);
-			System.out.println("ppart"+ppart);
-			System.out.println("spart"+spart);
-			System.out.println("zpart"+zpart);
+//			System.out.println("mpart"+mpart);
+//			System.out.println("ppart"+ppart);
+//			System.out.println("spart"+spart);
+//			System.out.println("zpart"+zpart);
 			
 			create(list, mpart, -1);
 			create(list, ppart, 8);
@@ -222,7 +224,7 @@ public class DefaultMojongService implements MojoService {
 	private void create(List<MoJoPai> list, String part, int type) {
 		if (part != null) {
 			for (int i = 0; i < part.length(); i++) {
-				System.out.println(Integer.valueOf(Character.getNumericValue(part.charAt(i)))+type);
+//				System.out.println(Integer.valueOf(Character.getNumericValue(part.charAt(i)))+type);
 				list.add(new MoJoPai(Integer.valueOf(Character.getNumericValue(part.charAt(i)))+type));
 			}
 		}
