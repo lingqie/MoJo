@@ -69,28 +69,4 @@ public class Player {
 		this.playerPaiZu = playerPaiZu;
 	}
 	
-	public String getPlayerPaiZuString(){
-		String mpart = new String();
-		String ppart = new String();
-		String spart = new String();
-		String zpart = new String();
-		for (MoJoPai moJoPai : playerPaiZu) {
-			if (moJoPai.getType().equals("m")) {
-				mpart+=moJoPai.getCode();
-			}
-			if (moJoPai.getType().equals("p")) {
-				ppart+=moJoPai.getCode();
-			}
-			if (moJoPai.getType().equals("s")) {
-				spart+=moJoPai.getCode();
-			}
-			if (moJoPai.getType().equals("z")) {
-				zpart+=moJoPai.getCode();
-			}
-		}
-		String[] array={mpart,ppart,spart,zpart};
-		String s = StringUtils.join(array, ",");
-		return s;
-		
-	}
 }

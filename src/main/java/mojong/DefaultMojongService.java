@@ -1,12 +1,14 @@
 package mojong;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +25,6 @@ public class DefaultMojongService implements MojoService {
 	public List<MoJoPai> initDeafaultPaiZu() {
 		paizu = new ArrayList<MoJoPai>();
 		addMoJoPai("m");
-		addMoJoPai("p");
-		addMoJoPai("s");
-		addZMoJoPai();
 		paizu2 = randomPaizu();
 		return paizu2;
 	}
@@ -40,50 +39,26 @@ public class DefaultMojongService implements MojoService {
 		return paizu2;
 	}
 
-	private static void addZMoJoPai() {
-		for (int i = 1; i < 8; i++) {
-			addMoJoPai(i, "z");
-		}
-	}
-
 	private static void addMoJoPai(String type) {
-		for (int i = 1; i < 10; i++) {
-			if (i == 5) {
-				addRedMoJoPai(5, type);
-				continue;
-			}
-			addMoJoPai(i, type);
+		for (int i = 0; i < 34; i++) {
+			addMoJoPai(i);
 		}
 	}
 
-	private static void addMoJoPai(int s, String type) {
+	private static void addMoJoPai(int s) {
 		for (int i = 0; i < 4; i++) {
-			paizu.add(new MoJoPai(s, type, false, false));
-		}
-	}
-
-	private static void addRedMoJoPai(int s, String type) {
-		paizu.add(new MoJoPai(s, type, true, true));
-		for (int i = 0; i < 3; i++) {
-			paizu.add(new MoJoPai(s, type, false, false));
+			paizu.add(new MoJoPai(s, false, false));
 		}
 	}
 
 	@Override
 	// TEST DONE
 	public Boolean isGreatter(MoJoPai p1, MoJoPai p2) {
-
-		if (p1.type.compareTo(p2.type) > 0) {
+		if (p1.code > p2.code) {
 			return true;
 		}
-		if (p1.type.equals(p2.type)) {
-			if (p1.code > p2.code) {
-				return true;
-			}
-			if (p1.code == p2.code && p1.type.equals(p2.type) && p2.isRed) {
-				return true;
-			}
-			return false;
+		if (p1.code == p2.code && p2.isRed) {
+			return true;
 		}
 		return false;
 	}
@@ -170,7 +145,7 @@ public class DefaultMojongService implements MojoService {
 		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(player));
 		// waiting yaojiu size 13 ,list size should be 12~13
 		// ron yaojiu size 14,list size should be 13
-		if (yaojiuCount >= 13 && list.size() == 13) {
+		if (yaojiuCount >= 13 && list.size() == 13&& player.size()==14) {
 			return true;
 		}
 		return false;
@@ -179,7 +154,8 @@ public class DefaultMojongService implements MojoService {
 	@Override
 	// TEST DONE
 	public Boolean isYaoJiu(MoJoPai pai) {
-		if (pai.type.equals("z") || pai.code == 1 || pai.code == 9) {
+		
+		if(ArrayUtils.contains(MoJoPaiCode.YAOJIULIST, pai.getCode())){;
 			return true;
 		}
 		return false;
@@ -188,11 +164,10 @@ public class DefaultMojongService implements MojoService {
 	@Override
 	// TEST DONE
 	public Boolean isFengPai(MoJoPai pai) {
-		if (pai.toPlayerString().equals("1z") || pai.toPlayerString().equals("2z") || pai.toPlayerString().equals("3z")
-				|| pai.toPlayerString().equals("4z")) {
-			return true;
-		}
-		return false;
+		if(ArrayUtils.contains(MoJoPaiCode.FENGPAILIST, pai.getCode())){;
+		return true;
+	}
+	return false;
 	}
 
 	@Override
@@ -221,11 +196,16 @@ public class DefaultMojongService implements MojoService {
 			ppart = StringUtils.replace(ppart, "p", "");
 			spart = StringUtils.replace(spart, "s", "");
 			zpart = StringUtils.replace(zpart, "z", "");
-
-			create(list, mpart, "m");
-			create(list, ppart, "p");
-			create(list, spart, "s");
-			create(list, zpart, "z");
+			
+			System.out.println("mpart"+mpart);
+			System.out.println("ppart"+ppart);
+			System.out.println("spart"+spart);
+			System.out.println("zpart"+zpart);
+			
+			create(list, mpart, -1);
+			create(list, ppart, 8);
+			create(list, spart, 17);
+			create(list, zpart, 26);
 			return list;
 		}
 		return null;
@@ -239,14 +219,11 @@ public class DefaultMojongService implements MojoService {
 	// return s;
 	// }
 
-	private void create(List<MoJoPai> list, String part, String type) {
+	private void create(List<MoJoPai> list, String part, int type) {
 		if (part != null) {
 			for (int i = 0; i < part.length(); i++) {
-				if (part.charAt(i) == '0') {
-					list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type, true, true));
-					continue;
-				}
-				list.add(new MoJoPai(Character.getNumericValue(part.charAt(i)), type));
+				System.out.println(Integer.valueOf(Character.getNumericValue(part.charAt(i)))+type);
+				list.add(new MoJoPai(Integer.valueOf(Character.getNumericValue(part.charAt(i)))+type));
 			}
 		}
 	}
@@ -277,10 +254,4 @@ public class DefaultMojongService implements MojoService {
 		}
 	}
 
-	public Boolean isRon(List<MoJoPai> pais) {
-		if (isQiDuiZiWaiting(pais) || isGuoShiWuShuang(pais)) {
-			return true;
-		}
-		return false;
-	}
 }

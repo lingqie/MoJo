@@ -16,8 +16,8 @@ public class TestDefaultPaiHeService2 {
 
 		paiHe.setTruePaiZu(pais);
 		player.setPaihe(paiHe);
-		assert !paiHeService.isContain(player, new MoJoPai("5s"));
-		paiHeService.addInPaiHe(player, new MoJoPai("5s"));
-		assert paiHeService.isContain(player, new MoJoPai("5s"));
+		assert !paiHeService.isContain(player, new MoJoPai(MoJoPaiCode.SUO5));
+		paiHeService.addInPaiHe(player, new MoJoPai(MoJoPaiCode.SUO5));
+		assert paiHeService.isContain(player, new MoJoPai(MoJoPaiCode.SUO5));
 	}
 }

@@ -27,7 +27,6 @@ public class MoJoManualTest {
 
 		showAllPlayerPaiZu(mojongService, player1PaiZu, player2PaiZu, player3PaiZu, player4PaiZu);
 		
-		System.out.println(room.player1.getPlayerPaiZuString());
 
 //		paishanService.fapai(room.getPlayer1(), room.getMojoPaiZu().getPaiShan());
 		// judge is can ron ro

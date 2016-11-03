@@ -14,7 +14,7 @@ public class TestDefaultPaiHeService {
 		PaiHe paiHe = new PaiHe();
 		paiHe.setTruePaiZu(pais);
 		player.setPaihe(paiHe);
-		paiHeService.addInPaiHe(player, new MoJoPai("5s"));
+		paiHeService.addInPaiHe(player, new MoJoPai(MoJoPaiCode.SUO5));
 		assert mojongService.getPaiString(player.getPaihe().getTruePaiZu(), false)
 				.equals("1z1z1z1z2z2z2z2z3z3z3z3z4z5s");
 	}
