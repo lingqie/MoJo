@@ -18,4 +18,5 @@ public interface MojoService {
 	public void initWangPai(Room room);
 	public void initPaiShan(Room room);
 	public void initPlayerPai(Room room);
+	public int[] toMoJoCodeArray(List<MoJoPai> pais);
 }

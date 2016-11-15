@@ -2,7 +2,7 @@
  <suite name="My test suite"> 
   <test name="First test"> 
     <classes> 
-    
+    	
        <class name="mojong.TestMoJo" /> 
        <class name="mojong.TestDefaultMoJoService" /> 
        <class name="mojong.TestDefaultMoJoService2" /> 
@@ -17,6 +17,7 @@
        
        <class name="mojong.TestDefaultScoreService" /> 
        <class name="mojong.TestDefaultScoreService2" /> 
+       <class name="mojong.TestDefaultScoreService3" /> 
        
     </classes> 
   </test> 

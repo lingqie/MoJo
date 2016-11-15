@@ -4,11 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DefaultScoreService implements ScoreService {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultScoreService.class);
+	private static final Logger logger = LoggerFactory.getLogger(DefaultScoreService.class);
 
 	public int shouldPay(int jibendian, Boolean isZhuangJia, Boolean isWinnerZhuangJia, Boolean isFangPao) {
-		LOGGER.info("基本点:{}",jibendian);
+
 		if (isFangPao && isWinnerZhuangJia) {
 			return get100BeiShu(jibendian * 6);
 		}

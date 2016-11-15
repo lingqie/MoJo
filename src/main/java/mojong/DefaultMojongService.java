@@ -3,6 +3,7 @@ package mojong;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -10,6 +11,8 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,9 +20,13 @@ public class DefaultMojongService implements MojoService {
 	private static List<MoJoPai> paizu;
 	private static List<MoJoPai> paizu2;
 	public static int zongPaiShu = 108 + 28;// 136
+	public int[] n_zero = new int[34];
+
 	// player pai 13*4
 	// paishan 70
 	// lingshang 14
+
+	private static final Logger logger = LoggerFactory.getLogger(DefaultMojongService.class);
 
 	@Override
 	public List<MoJoPai> initDeafaultPaiZu() {
@@ -128,7 +135,7 @@ public class DefaultMojongService implements MojoService {
 				i++;
 			}
 		}
-		System.out.println(qiduiziCount);
+		logger.info("对子数目：{}", qiduiziCount);
 		if (qiduiziCount == 7) {
 			return true;
 		}
@@ -147,7 +154,7 @@ public class DefaultMojongService implements MojoService {
 		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(player));
 		// waiting yaojiu size 13 ,list size should be 12~13
 		// ron yaojiu size 14,list size should be 13
-		if (yaojiuCount >= 13 && list.size() == 13&& player.size()==14) {
+		if (yaojiuCount >= 13 && list.size() == 13 && player.size() == 14) {
 			return true;
 		}
 		return false;
@@ -156,8 +163,9 @@ public class DefaultMojongService implements MojoService {
 	@Override
 	// TEST DONE
 	public Boolean isYaoJiu(MoJoPai pai) {
-		
-		if(ArrayUtils.contains(MoJoPaiCode.YAOJIULIST, pai.getCode())){;
+
+		if (ArrayUtils.contains(MoJoPaiCode.YAOJIULIST, pai.getCode())) {
+			;
 			return true;
 		}
 		return false;
@@ -166,19 +174,19 @@ public class DefaultMojongService implements MojoService {
 	@Override
 	// TEST DONE
 	public Boolean isFengPai(MoJoPai pai) {
-		if(ArrayUtils.contains(MoJoPaiCode.FENGPAILIST, pai.getCode())){;
-		return true;
-	}
-	return false;
+		if (ArrayUtils.contains(MoJoPaiCode.FENGPAILIST, pai.getCode())) {
+			;
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public Boolean isCanRon(List<MoJoPai> player) {
-		//1fan duanyao
-		//hunyise
-		//qingyise
-		
-		
+		// 1fan duanyao
+		// hunyise
+		// qingyise
+
 		return null;
 	}
 
@@ -198,12 +206,12 @@ public class DefaultMojongService implements MojoService {
 			ppart = StringUtils.replace(ppart, "p", "");
 			spart = StringUtils.replace(spart, "s", "");
 			zpart = StringUtils.replace(zpart, "z", "");
-			
-//			System.out.println("mpart"+mpart);
-//			System.out.println("ppart"+ppart);
-//			System.out.println("spart"+spart);
-//			System.out.println("zpart"+zpart);
-			
+
+			// System.out.println("mpart"+mpart);
+			// System.out.println("ppart"+ppart);
+			// System.out.println("spart"+spart);
+			// System.out.println("zpart"+zpart);
+
 			create(list, mpart, -1);
 			create(list, ppart, 8);
 			create(list, spart, 17);
@@ -224,8 +232,8 @@ public class DefaultMojongService implements MojoService {
 	private void create(List<MoJoPai> list, String part, int type) {
 		if (part != null) {
 			for (int i = 0; i < part.length(); i++) {
-//				System.out.println(Integer.valueOf(Character.getNumericValue(part.charAt(i)))+type);
-				list.add(new MoJoPai(Integer.valueOf(Character.getNumericValue(part.charAt(i)))+type));
+				// System.out.println(Integer.valueOf(Character.getNumericValue(part.charAt(i)))+type);
+				list.add(new MoJoPai(Integer.valueOf(Character.getNumericValue(part.charAt(i))) + type));
 			}
 		}
 	}
@@ -254,6 +262,97 @@ public class DefaultMojongService implements MojoService {
 		for (int i = 13 * 4; i < zongPaiShu - 14; i++) {
 			room.getPaiShan().add(paizu2.get(i));
 		}
+	}
+
+	@Override
+	public int[] toMoJoCodeArray(List<MoJoPai> pais) {
+		int[] ret = new int[pais.size()];
+		Iterator<MoJoPai> iter = pais.iterator();
+		for (int i = 0; iter.hasNext(); i++) {
+			ret[i] = iter.next().getCode();
+		}
+		return ret;
+
+	}
+
+	// 计算每种牌的个数。
+	public int[] analyse(int[] hai) {
+
+		int[] n = n_zero.clone();
+
+		for (int i : hai) {
+			n[i]++;
+		}
+		return n;
+	}
+
+	public List<Integer[][]> agari(int[] n) {// 输入对应统计数
+		List<Integer[][]> ret = new ArrayList<Integer[][]>();
+		for (int i = 0; i < 34; i++) {
+			for (int kotsu_first = 0; kotsu_first < 2; kotsu_first++) {
+				Integer[] janto = new Integer[1];
+				ArrayList<Integer> kotsu = new ArrayList<Integer>();
+				ArrayList<Integer> shuntsu = new ArrayList<Integer>();
+
+				int[] t = n.clone();// tonngji shu
+				if (t[i] >= 2) { // t[0]>=2 man1>2
+					// 雀頭をはじめに取り出す
+					t[i] -= 2;
+					janto[0] = i;
+
+					if (kotsu_first == 0) {
+						// 刻子を先に取り出す
+						for (int j = 0; j < 34; j++) {
+							if (t[j] >= 3) {
+								t[j] -= 3;
+								kotsu.add(j);
+							}
+						}
+						// 順子を後に取り出す
+						for (int a = 0; a < 3; a++) {
+							for (int b = 0; b < 7;) {
+								if (t[9 * a + b] >= 1 && t[9 * a + b + 1] >= 1 && t[9 * a + b + 2] >= 1) {
+									t[9 * a + b]--;
+									t[9 * a + b + 1]--;
+									t[9 * a + b + 2]--;
+									shuntsu.add(9 * a + b);
+								} else {
+									b++;
+								}
+							}
+						}
+					} else {
+						// 順子を先に取り出す
+						for (int a = 0; a < 3; a++) {
+							for (int b = 0; b < 7;) {
+								if (t[9 * a + b] >= 1 && t[9 * a + b + 1] >= 1 && t[9 * a + b + 2] >= 1) {
+									t[9 * a + b]--;
+									t[9 * a + b + 1]--;
+									t[9 * a + b + 2]--;
+									shuntsu.add(9 * a + b);
+								} else {
+									b++;
+								}
+							}
+						}
+						// 刻子を後に取り出す
+						for (int j = 0; j < 34; j++) {
+							if (t[j] >= 3) {
+								t[j] -= 3;
+								kotsu.add(j);
+							}
+						}
+					}
+
+					// 和了の形か調べる
+					if (Arrays.equals(t, n_zero)) {// 所有牌用光了
+						ret.add(new Integer[][] { janto, kotsu.toArray(new Integer[0]),
+								shuntsu.toArray(new Integer[0]) });
+					}
+				}
+			}
+		}
+		return ret;
 	}
 
 }
