@@ -3,7 +3,7 @@ package mojong;
 import org.testng.annotations.Test;
 
 public class TestDefaultScoreService {
-	@Test
+	@Test(groups = "score")
 	public void get100BeiShu() {
 		DefaultScoreService scoreService = new DefaultScoreService();
 		//点闲家炮 

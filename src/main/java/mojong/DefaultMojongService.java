@@ -128,6 +128,7 @@ public class DefaultMojongService implements MojoService {
 
 	@Override
 	public Boolean isQiDuiZi(List<MoJoPai> player) {
+		toSortPlayerPaizu(player);
 		int qiduiziCount = 0;
 		for (int i = 0; i < player.size() - 1; i++) {
 			if (player.get(i).equals(player.get(i + 1))) {
@@ -274,7 +275,35 @@ public class DefaultMojongService implements MojoService {
 		return ret;
 
 	}
+	
+	public List<Integer> waitingForThisToAgari(List<MoJoPai> pais){
+		int[] result = calculateWhichIsWaiting(pais);
+		List<Integer> resultList=new ArrayList<Integer>();
+		for (int i=0;i<result.length;i++) {
+			if(result[i]>0){
+				resultList.add(i);
+			}
+		}
+		return resultList;
+	}
 
+	public int[] calculateWhichIsWaiting(List<MoJoPai> pais) {
+		int[] result=new int[34];
+		for (int i=0;i<34;i++) {
+			List<MoJoPai> tempPais=new ArrayList<MoJoPai>();
+			tempPais.addAll(pais);
+			tempPais.add(new MoJoPai(i));
+			toSortPlayerPaizu(tempPais);
+			int[] n = analyse(toMoJoCodeArray(tempPais));
+	        List<Integer[][]> ret = agari(n);
+	        if(!ret.isEmpty()){
+	        	result[i]++;
+	        }
+		}
+		return result;
+	}
+	
+	@Override
 	// 计算每种牌的个数。
 	public int[] analyse(int[] hai) {
 
@@ -285,7 +314,8 @@ public class DefaultMojongService implements MojoService {
 		}
 		return n;
 	}
-
+	
+	@Override
 	public List<Integer[][]> agari(int[] n) {// 输入对应统计数
 		List<Integer[][]> ret = new ArrayList<Integer[][]>();
 		for (int i = 0; i < 34; i++) {
