@@ -1,8 +1,5 @@
 package mojong;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MoJoPaiCode {
 	static final int WAN = 0;
 	static final int WAN1 = 0;

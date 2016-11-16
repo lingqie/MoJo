@@ -8,7 +8,7 @@ public class TestDefaultMoJoService6 {
 	@Test
 	public void TestIsQiDuiZi() {
 		DefaultMojongService mojongService = new DefaultMojongService();
-		List<MoJoPai> pais = mojongService.createMoJoPais("11112222333344z");
+		List<MoJoPai> pais = mojongService.createMoJoPais("11223344556677z");
 		List<MoJoPai> pais2 = mojongService.createMoJoPais("11223344m1234567z");
 		List<MoJoPai> pais3 = mojongService.createMoJoPais("111122223333444455z");
 		assert mojongService.isQiDuiZi(pais) == true;

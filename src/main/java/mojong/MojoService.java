@@ -21,4 +21,6 @@ public interface MojoService {
 	public int[] toMoJoCodeArray(List<MoJoPai> pais);
 	public int[] analyse(int[] hai);
 	public List<Integer[][]> agari(int[] n);
+	public List<Integer> waitingForThisToAgari(List<MoJoPai> pais);
+	public int[] calculateWhichIsWaiting(List<MoJoPai> pais);
 }

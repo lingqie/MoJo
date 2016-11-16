@@ -128,30 +128,45 @@ public class DefaultMojongService implements MojoService {
 
 	@Override
 	public Boolean isQiDuiZi(List<MoJoPai> player) {
-		toSortPlayerPaizu(player);
-		int qiduiziCount = 0;
-		for (int i = 0; i < player.size() - 1; i++) {
-			if (player.get(i).equals(player.get(i + 1))) {
-				qiduiziCount++;
-				i++;
-			}
-		}
-		logger.info("对子数目：{}", qiduiziCount);
-		if (qiduiziCount == 7) {
+		if (duiziCount(player) == 7) {
 			return true;
 		}
 		return false;
 	}
 
+	public Boolean isWaitingQiDuiZi(List<MoJoPai> pais) {
+		if (duiziCount(pais) != 6) {
+			return false;
+		}
+		int[] array = analyse(toMoJoCodeArray(pais));
+		int count = 0;
+		for (int i = 0; i < 34; i++) {
+			if (array[i] > 2) {
+				count++;
+			}
+		}
+		if (count > 0) {
+			return false;
+		}
+		return true;
+
+	}
+
+	public int duiziCount(List<MoJoPai> pais) {
+		int[] array = analyse(toMoJoCodeArray(pais));
+		int qiduiziCount = 0;
+		for (int i = 0; i < 34; i++) {
+			if (array[i] == 2) {
+				qiduiziCount++;
+			}
+		}
+		return qiduiziCount;
+	}
+
 	@Override
 	// TEST DONE
 	public Boolean isGuoShiWuShuang(List<MoJoPai> player) {
-		int yaojiuCount = 0;
-		for (MoJoPai moJoPai : player) {
-			if (isYaoJiu(moJoPai)) {
-				yaojiuCount++;
-			}
-		}
+		int yaojiuCount = countYaoJiu(player);
 		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(player));
 		// waiting yaojiu size 13 ,list size should be 12~13
 		// ron yaojiu size 14,list size should be 13
@@ -159,6 +174,59 @@ public class DefaultMojongService implements MojoService {
 			return true;
 		}
 		return false;
+	}
+
+	public Boolean isWaitingGuoShiWuShuang(List<MoJoPai> pais) {
+		int yaojiuCount = countYaoJiu(pais);
+		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(pais));
+		// waiting yaojiu size 13 ,list size should be 12~13
+		// ron yaojiu size 14,list size should be 13
+		if (yaojiuCount == 13 && list.size() >= 12 && pais.size() == 13) {
+			return true;
+		}
+		return false;
+	}
+
+	private int countYaoJiu(List<MoJoPai> pais) {
+		int yaojiuCount = 0;
+		for (MoJoPai moJoPai : pais) {
+			if (isYaoJiu(moJoPai)) {
+				yaojiuCount++;
+			}
+		}
+		return yaojiuCount;
+	}
+
+	public List<Integer> waitingForThisToGuoShiWuShuang(List<MoJoPai> pais) {
+		List<Integer> result = new ArrayList<Integer>();
+		ArrayList<MoJoPai> list = new ArrayList<MoJoPai>(new HashSet<MoJoPai>(pais));
+		if (isWaitingGuoShiWuShuang(pais) && list.size() == 12) {
+			int[] analyse = analyse(toMoJoCodeArray(pais));
+			for (int i : MoJoPaiCode.YAOJIULIST) {
+				if (analyse[i] == 0) {
+					result.add(i);
+				}
+			}
+		}
+		if (isWaitingGuoShiWuShuang(pais) && list.size() == 13) {
+			for (int i : MoJoPaiCode.YAOJIULIST) {
+				result.add(i);
+			}
+		}
+		return result;
+	}
+
+	public List<Integer> waitingForThisToQiDuiZi(List<MoJoPai> pais) {
+		List<Integer> result = new ArrayList<Integer>();
+		if (isWaitingQiDuiZi(pais)) {
+			int[] array = analyse(toMoJoCodeArray(pais));
+			for (int i = 0; i < 34; i++) {
+				if (array[i] == 1) {
+					result.add(i);
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override
@@ -273,36 +341,37 @@ public class DefaultMojongService implements MojoService {
 			ret[i] = iter.next().getCode();
 		}
 		return ret;
-
 	}
-	
-	public List<Integer> waitingForThisToAgari(List<MoJoPai> pais){
+
+	@Override
+	public List<Integer> waitingForThisToAgari(List<MoJoPai> pais) {
 		int[] result = calculateWhichIsWaiting(pais);
-		List<Integer> resultList=new ArrayList<Integer>();
-		for (int i=0;i<result.length;i++) {
-			if(result[i]>0){
+		List<Integer> resultList = new ArrayList<Integer>();
+		for (int i = 0; i < result.length; i++) {
+			if (result[i] > 0) {
 				resultList.add(i);
 			}
 		}
 		return resultList;
 	}
 
+	@Override
 	public int[] calculateWhichIsWaiting(List<MoJoPai> pais) {
-		int[] result=new int[34];
-		for (int i=0;i<34;i++) {
-			List<MoJoPai> tempPais=new ArrayList<MoJoPai>();
+		int[] result = new int[34];
+		for (int i = 0; i < 34; i++) {
+			List<MoJoPai> tempPais = new ArrayList<MoJoPai>();
 			tempPais.addAll(pais);
 			tempPais.add(new MoJoPai(i));
 			toSortPlayerPaizu(tempPais);
 			int[] n = analyse(toMoJoCodeArray(tempPais));
-	        List<Integer[][]> ret = agari(n);
-	        if(!ret.isEmpty()){
-	        	result[i]++;
-	        }
+			List<Integer[][]> ret = agari(n);
+			if (!ret.isEmpty()) {
+				result[i]++;
+			}
 		}
 		return result;
 	}
-	
+
 	@Override
 	// 计算每种牌的个数。
 	public int[] analyse(int[] hai) {
@@ -314,7 +383,7 @@ public class DefaultMojongService implements MojoService {
 		}
 		return n;
 	}
-	
+
 	@Override
 	public List<Integer[][]> agari(int[] n) {// 输入对应统计数
 		List<Integer[][]> ret = new ArrayList<Integer[][]>();
