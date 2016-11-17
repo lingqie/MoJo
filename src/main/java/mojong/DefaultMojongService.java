@@ -293,14 +293,6 @@ public class DefaultMojongService implements MojoService {
 		return null;
 	}
 
-	// public String createMoJoPaisText(List<MoJoPai> pais){
-	// String s=new String();
-	// for (MoJoPai moJoPai : pais) {
-	// s=s+moJoPai.toPlayerString();
-	// }
-	// return s;
-	// }
-
 	private void create(List<MoJoPai> list, String part, int type) {
 		if (part != null) {
 			for (int i = 0; i < part.length(); i++) {
