@@ -232,9 +232,7 @@ public class DefaultMojongService implements MojoService {
 	@Override
 	// TEST DONE
 	public Boolean isYaoJiu(MoJoPai pai) {
-
 		if (ArrayUtils.contains(MoJoPaiCode.YAOJIULIST, pai.getCode())) {
-			;
 			return true;
 		}
 		return false;
@@ -244,19 +242,24 @@ public class DefaultMojongService implements MojoService {
 	// TEST DONE
 	public Boolean isFengPai(MoJoPai pai) {
 		if (ArrayUtils.contains(MoJoPaiCode.FENGPAILIST, pai.getCode())) {
-			;
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public Boolean isCanRon(List<MoJoPai> player) {
-		// 1fan duanyao
-		// hunyise
-		// qingyise
+	public Boolean isWaitingRon(List<MoJoPai> pais) {
+		if (isWaitingGuoShiWuShuang(pais) || isWaitingQiDuiZi(pais) || !waitingForThisToAgari(pais).isEmpty()) {
+			return true;
+		}
+		return false;
+	}
 
-		return null;
+	public Boolean isRon(List<MoJoPai> pais) {
+		if (isGuoShiWuShuang(pais) || isQiDuiZi(pais) || !agari(analyse(toMoJoCodeArray(pais))).isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

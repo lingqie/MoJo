@@ -9,7 +9,7 @@ public interface MojoService {
 	public void toSortPlayerPaizu(List<MoJoPai> player);
 	public void showPai(List<MoJoPai> all,String name,int line,Boolean isAdmin);
 	public Boolean isQiDuiZi(List<MoJoPai> player);
-	public Boolean isCanRon(List<MoJoPai> player);
+	public Boolean isWaitingRon(List<MoJoPai> player);
 	public Boolean isGuoShiWuShuang(List<MoJoPai> player);
 	public Boolean isFengPai(MoJoPai pai);
 	public String getPaiString(List<MoJoPai> all, Boolean isAdmin);
