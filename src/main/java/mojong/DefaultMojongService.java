@@ -31,7 +31,7 @@ public class DefaultMojongService implements MojoService {
 	@Override
 	public List<MoJoPai> initDeafaultPaiZu() {
 		paizu = new ArrayList<MoJoPai>();
-		addMoJoPai("m");
+		addMoJoPai();
 		paizu2 = randomPaizu();
 		return paizu2;
 	}
@@ -46,7 +46,7 @@ public class DefaultMojongService implements MojoService {
 		return paizu2;
 	}
 
-	private static void addMoJoPai(String type) {
+	private static void addMoJoPai() {
 		for (int i = 0; i < 34; i++) {
 			addMoJoPai(i);
 		}

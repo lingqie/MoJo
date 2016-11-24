@@ -105,6 +105,6 @@ public class Room {
 	}
 	
 	public String getChangShuString(){
-		 return String.valueOf(changshu+1);
+		 return String.valueOf(changshu+1)+"本场";
 	}
 }

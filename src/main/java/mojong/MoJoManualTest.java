@@ -38,8 +38,8 @@ public class MoJoManualTest {
 
 //		showAllPlayerPaiZu(mojongService, player1PaiZu, player2PaiZu, player3PaiZu, player4PaiZu);
 
-		// mojongService.showPai(room.getWangPai(), "lingshangpai", 2, true);
-		// mojongService.showPai(room.getPaiShan(), "Paishan", 2, true);
+		 mojongService.showPai(room.getWangPai(), "lingshangpai", 2, true);
+		 mojongService.showPai(room.getPaiShan(), "Paishan", 2, true);
 	}
 
 	private static void init(Room room, DefaultMojongService mojongService) {
