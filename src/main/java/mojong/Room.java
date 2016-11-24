@@ -9,8 +9,7 @@ public class Room {
 	public Player player4;
 	public PaiZu mojoPaiZu;
 	public int lizhibangshu;
-	public int fengxiang;
-	public int jushu;// dong yi ju
+	public int jushu;
 	public int changshu;// er ben chang
 
 	public Room() {
@@ -53,14 +52,6 @@ public class Room {
 		this.mojoPaiZu = mojoPaiZu;
 	}
 
-	public int getFengxiang() {
-		return fengxiang;
-	}
-
-	public void setFengxiang(int fengxiang) {
-		this.fengxiang = fengxiang;
-	}
-
 	public Player getPlayer1() {
 		return player1;
 	}
@@ -92,20 +83,28 @@ public class Room {
 	public void setPlayer4(Player player4) {
 		this.player4 = player4;
 	}
-	
-	public List<MoJoPai> getWangPai(){
+
+	public List<MoJoPai> getWangPai() {
 		return mojoPaiZu.getWangPai().getWangpais();
 	}
-	
-	public void setWangPai(List<MoJoPai> p){
+
+	public void setWangPai(List<MoJoPai> p) {
 		mojoPaiZu.getWangPai().setWangpais(p);
 	}
-	
-	public List<MoJoPai> getPaiShan(){
+
+	public List<MoJoPai> getPaiShan() {
 		return mojoPaiZu.getPaiShan().getPaiShan();
 	}
-	
-	public void setPaiShan(List<MoJoPai> p){
+
+	public void setPaiShan(List<MoJoPai> p) {
 		mojoPaiZu.getPaiShan().setPaiShan(p);
+	}
+	
+	public String getJuShuString(){
+		return MoJoPaiCode.jushu[jushu];
+	}
+	
+	public String getChangShuString(){
+		 return String.valueOf(changshu+1);
 	}
 }

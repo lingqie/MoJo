@@ -46,4 +46,8 @@ public class MoJoPaiCode {
 			"1s","2s","3s","4s","5s","6s","7s","8s","9s",
 			"1z","2z","3z","4z","5z","6z","7z"
 			};
+	static final String [] jushu={
+			"东一局","东二局","东三局","东四局",
+			"南一局","南二局","南三局","南四局"
+	};
 }

@@ -19,6 +19,9 @@ public class PaiShan {
 	}
 	
 	public MoJoPai getFirstMoJo(){
+		if(paishan.size()==0){
+			return null;
+		}
 		return paishan.get(0);
 	}
 }
