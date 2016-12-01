@@ -23,4 +23,6 @@ public interface MojoService {
 	public List<Integer[][]> agari(int[] n);
 	public List<Integer> waitingForThisToAgari(List<MoJoPai> pais);
 	public int[] calculateWhichIsWaiting(List<MoJoPai> pais);
+	public List<Integer> waitingForThisToPeng(List<MoJoPai> pais);
+	public List<Integer> waitingForThisToGang(List<MoJoPai> pais);
 }

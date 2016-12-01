@@ -351,6 +351,31 @@ public class DefaultMojongService implements MojoService {
 	}
 
 	@Override
+	public List<Integer> waitingForThisToPeng(List<MoJoPai> pais) {
+		int[] result = analyse(toMoJoCodeArray(pais));
+		List<Integer> resultList = new ArrayList<Integer>();
+		for (int i = 0; i < result.length; i++) {
+			if (result[i] > 1&&result[i]>4) {
+				resultList.add(i);
+			}
+		}
+		return resultList;
+	}
+
+	@Override
+	public List<Integer> waitingForThisToGang(List<MoJoPai> pais) {
+		int[] result = analyse(toMoJoCodeArray(pais));
+		List<Integer> resultList = new ArrayList<Integer>();
+		for (int i = 0; i < result.length; i++) {
+			if (result[i] > 2&& result[i]>4) {
+				resultList.add(i);
+			}
+		}
+		return resultList;
+	}
+
+	
+	@Override
 	public int[] calculateWhichIsWaiting(List<MoJoPai> pais) {
 		int[] result = new int[34];
 		for (int i = 0; i < 34; i++) {
