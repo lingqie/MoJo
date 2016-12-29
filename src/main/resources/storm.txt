@@ -1,0 +1,21 @@
+Q:会传承 到下一场有什么? 
+A:每个人分数,荔枝棒,
+Q：剩下的部分 可以 抽象到 一场里面.
+A:是的
+Q:如何记录player每一场风向
+A；开始时记录下东一，顺序，s［p2，p1，p3，p4］，然后东二则s［1］为东以此类推
+
+		assert mojongService.waitingForThisToPeng(pais).equals(Arrays.asList(MoJoPaiCode.DONG, MoJoPaiCode.NAN,
+				MoJoPaiCode.XI, MoJoPaiCode.BEI, MoJoPaiCode.BAI, MoJoPaiCode.FA));
+		assert mojongService.waitingForThisToPeng(pais2).equals(Arrays.asList(MoJoPaiCode.DONG, MoJoPaiCode.NAN,
+				MoJoPaiCode.XI, MoJoPaiCode.BEI, MoJoPaiCode.BAI, MoJoPaiCode.FA, MoJoPaiCode.ZHONG));
+		assert mojongService.waitingForThisToPeng(pais3)
+				.equals(Arrays.asList(MoJoPaiCode.BEI,MoJoPaiCode.XI));
+		assert mojongService.waitingForThisToPeng(pais4).isEmpty();
+		assert mojongService.waitingForThisToPeng(pais5).equals(Arrays.asList(MoJoPaiCode.ZHONG));
+D：现在的思路，先完成一场派的流程，然后根据抽象完成。
+
+
+		
+		
+		assert mojongService.waitingForThisToPeng(pais6).equals(Arrays.asList(MoJoPaiCode.ZHONG));
