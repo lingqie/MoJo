@@ -17,7 +17,7 @@ public class TestDefaultMoJoService15 {
 		assert mojongService.waitingForThisToGang(pais).equals(Arrays.asList(MoJoPaiCode.BEI, MoJoPaiCode.FA));
 		assert mojongService.waitingForThisToGang(pais2).isEmpty();
 		assert mojongService.waitingForThisToGang(pais3)
-				.equals(Arrays.asList(MoJoPaiCode.NAN));
+				.equals(Arrays.asList(MoJoPaiCode.XI));
 		assert mojongService.waitingForThisToGang(pais4).isEmpty();
 	}
 }

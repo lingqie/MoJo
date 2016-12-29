@@ -263,7 +263,6 @@ public class DefaultMojongService implements MojoService {
 	}
 
 	@Override
-	// TEST DONE
 	public List<MoJoPai> createMoJoPais(String text) {
 		List<MoJoPai> list = new ArrayList<MoJoPai>();
 		String pattern = "(\\d*m+)?(\\d*p+)?(\\d*s+)?(\\d*z+)?";
@@ -355,7 +354,7 @@ public class DefaultMojongService implements MojoService {
 		int[] result = analyse(toMoJoCodeArray(pais));
 		List<Integer> resultList = new ArrayList<Integer>();
 		for (int i = 0; i < result.length; i++) {
-			if (result[i] > 1&&result[i]>4) {
+			if (result[i] > 1&&result[i]<4) {
 				resultList.add(i);
 			}
 		}
@@ -367,7 +366,7 @@ public class DefaultMojongService implements MojoService {
 		int[] result = analyse(toMoJoCodeArray(pais));
 		List<Integer> resultList = new ArrayList<Integer>();
 		for (int i = 0; i < result.length; i++) {
-			if (result[i] > 2&& result[i]>4) {
+			if (result[i] == 3) {
 				resultList.add(i);
 			}
 		}
